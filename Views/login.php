@@ -27,7 +27,7 @@
         </div>
         <input type="email" id="loginEmail" name="email" required placeholder="Enter Email">
         <input type="password" id="loginPassword" name="password" required minlength="8" placeholder="Enter Password">
-        <input type="submit" value="Login">
+        <input type="submit" value="Login" name="submit">
         <p>Don't have an account? <a href="register.php">Register Now</a></p>
       </form>
     </div>

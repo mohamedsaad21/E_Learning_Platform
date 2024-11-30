@@ -32,7 +32,7 @@
         <input type="password" id="password" name="password" required minlength="8" placeholder="password">
         <input type="password" id="confirmPassword" name="confirmPassword" required minlength="8"
           placeholder="Confirm password">
-        <input type="submit" value="Register">
+        <input type="submit" value="Register" name="submit">
         <p>Already have an account? <a href="login.php">Login Now</a></p>
       </form>
     </div>
