@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Parkinsans", sans-serif;
+}
+
+body {
+  color: #fff;
+  background-color: #1a1a2e;
+}
+
+header {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #ffc107;
+  padding-top: 10px;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  width: 90%;
+  background: #121232;
+  border-radius: 10px;
+  box-shadow: 3px 10px 27px 0px rgba(0, 0, 0, 0.65);
+  padding: 20px;
+  margin: auto;
+}
+
+.forms {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+.form {
+  width: 100%;
+}
+
+.form .formType {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  text-align: center;
+  color: #ffc107;
+}
+
+.form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #222;
+  color: #fff;
+  font-size: 1rem;
+  transition: border .2s ease;
+}
+
+.form .typeContainer {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.form .typeContainer .userType {
+  padding: 0 !important;
+  margin: 0 5px !important;
+  width: 5%;
+}
+
+.form input:focus {
+  border: 1px solid #aaa;
+  outline: none;
+}
+
+.form input[type="submit"] {
+  background-color: #ffc107;
+  color: #000;
+  cursor: pointer;
+}
+
+.form input[type="submit"]:hover {
+  background-color: #e0a800;
+}
+
+.form p {
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.form p a {
+  color: #ffc107;
+  text-decoration: none;
+  transition: .4s ease;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.form p a::after {
+  content: '';
+  background-color: #ffc107;
+  height: 1px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 0;
+  transition: .4s ease;
+}
+
+.form p a:hover {
+  letter-spacing: 1px;
+}
+
+.form p a:hover::after {
+  width: 100%;
+}
+
+.image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .forms {
+    width: 100%;
+  }
+
+  .image {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
