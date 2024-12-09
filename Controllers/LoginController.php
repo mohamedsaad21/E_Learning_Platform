@@ -33,7 +33,10 @@
         if($row['Email'] === $email && $row['Password'] === $password){
             $_SESSION['Email'] = $row['Email'];
             $_SESSION['Id'] = $row['Id'];
-            header("Location:../index.php");
+            if($MyRole === 'student'){
+                $_SESSION['Name'] = $row['firstname'] . " " . $row['lastname'];
+                header("Location: StudentController.php");
+            }
         }else{
             header("Location: ../Views/login.php?error=Incorrect userName or Password");
             exit();
