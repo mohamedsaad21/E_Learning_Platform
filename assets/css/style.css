@@ -8,20 +8,20 @@
 }
 
 body {
-  color: #fff;
-  background-color: #1a1a2e;
+  color: #1a1a2e; /* Dark text color for light background */
+  background-color: #f8f9fa; /* Light background */
 }
 
 header {
   width: 100%;
   text-align: center;
-  padding-bottom: 20px;
-  padding-top: 20px;
+  padding: 20px 0;
+  background-color: #007bff; /* Bright blue header */
 }
 
 h1 {
   text-align: center;
-  color: #ffc107;
+  color: #007bff; /* White text for contrast */
   padding-top: 10px;
   cursor: pointer;
 }
@@ -32,9 +32,9 @@ h1 {
   align-items: center;
   max-width: 1200px;
   width: 90%;
-  background: #121232;
+  background: #ffffff; /* White container */
   border-radius: 10px;
-  box-shadow: 3px 10px 27px 0px rgba(0, 0, 0, 0.65);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin: auto;
 }
@@ -55,19 +55,19 @@ h1 {
   margin-bottom: 20px;
   font-size: 1.8rem;
   text-align: center;
-  color: #ffc107;
+  color: #007bff; /* Blue heading text */
 }
 
 .form input {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
-  border: none;
+  border: 1px solid #ced4da; /* Light border */
   border-radius: 5px;
-  background-color: #222;
-  color: #fff;
+  background-color: #ffffff;
+  color: #495057; /* Dark text */
   font-size: 1rem;
-  transition: border .2s ease;
+  transition: border 0.2s ease;
 }
 
 .form .typeContainer {
@@ -83,18 +83,19 @@ h1 {
 }
 
 .form input:focus {
-  border: 1px solid #aaa;
+  border: 1px solid #007bff; /* Blue border on focus */
   outline: none;
 }
 
 .form input[type="submit"] {
-  background-color: #ffc107;
-  color: #000;
+  background-color: #007bff; /* Bright blue button */
+  color: #ffffff;
   cursor: pointer;
+  border: none;
 }
 
 .form input[type="submit"]:hover {
-  background-color: #e0a800;
+  background-color: #0056b3; /* Darker blue on hover */
 }
 
 .form p {
@@ -103,22 +104,22 @@ h1 {
 }
 
 .form p a {
-  color: #ffc107;
+  color: #007bff;
   text-decoration: none;
-  transition: .4s ease;
+  transition: 0.4s ease;
   position: relative;
   padding-bottom: 2px;
 }
 
 .form p a::after {
   content: '';
-  background-color: #ffc107;
+  background-color: #007bff;
   height: 1px;
   position: absolute;
   bottom: 0px;
   left: 0px;
   width: 0;
-  transition: .4s ease;
+  transition: 0.4s ease;
 }
 
 .form p a:hover {

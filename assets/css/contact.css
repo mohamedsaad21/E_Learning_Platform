@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Parkinsans", sans-serif;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 5px;
+    transition: 0.4s ease-in-out;
+}
+
+.nav-links a:hover {
+    background-color: #fff;
+    color: black;
+}
+
+.contact-page .hero {
+    text-align: center;
+    background-color: #f4f4f9;
+    padding: 3rem 2rem;
+}
+
+.contact-page .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.contact-page .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.contact-form-section {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: #e9ecef;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-form label {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contact-form .submit-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.4s ease-in-out;
+}
+
+.contact-form .submit-btn:hover {
+    background-color: #0056b3;
+}
+
+.social-links {
+    text-align: center;
+    margin: 2rem auto;
+}
+
+.social-links h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.icons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.icon-link {
+    font-size: 2rem;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.icon-link.linkedin:hover {
+    color: #0077b5;
+}
+
+.icon-link.facebook:hover {
+    color: #3b5998;
+}
+
+.icon-link.whatsapp:hover {
+    color: #25d366;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
