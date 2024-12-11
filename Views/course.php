@@ -51,22 +51,24 @@ if ($stmt) {
     </div>
   </header>
 
-  <div class="course-details">
-    <div class="course-image">
-      <img src="<?= htmlspecialchars('../'.$course['ImageUrl'] ?: '../assets/imgs/Courses/default-course.jpg') ?>" 
-           alt="<?= htmlspecialchars($course['Title']) ?> Image">
-    </div>
-    <div class="course-info">
-      <h1><?= htmlspecialchars($course['Title']) ?></h1>
-      <div class="course-price">
-        <span class="current-price">$<?= htmlspecialchars($course['Price']) ?></span>
+  <form action="../Controllers/EnrollCourseController.php" method="post">
+    <div class="course-details">
+      <div class="course-image">
+        <img src="<?= htmlspecialchars('../'.$course['ImageUrl'] ?: '../assets/imgs/Courses/default-course.jpg') ?>" 
+            alt="<?= htmlspecialchars($course['Title']) ?> Image">
       </div>
-      <p class="course-description">
-        <?= htmlspecialchars($course['Description']) ?>
-      </p>
-      <button class="enroll-btn">Enroll Now</button>
+      <div class="course-info">
+        <h1><?= htmlspecialchars($course['Title']) ?></h1>
+        <div class="course-price">
+          <span class="current-price">$<?= htmlspecialchars($course['Price']) ?></span>
+        </div>
+        <p class="course-description">
+          <?= htmlspecialchars($course['Description']) ?>
+        </p>
+        <button type="submit" class="enroll-btn">Enroll Now</button>
+      </div>
     </div>
-  </div>
+  </form>
 
   <footer class="footer">
     <div class="container">

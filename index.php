@@ -1,51 +1,90 @@
-<?php
-
-include "config/database.php";
-$sql = "SELECT `Title`, `Description`, `Price`, `ImageUrl` FROM `Courses`";
-$result = mysqli_query($conn, $sql);
-if ($result && mysqli_num_rows($result) > 0) {
-    // Fetch all rows and store them in a session
-    $_SESSION['courses'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
-} else {
-    $_SESSION['courses'] = []; // Empty array if no data found
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Courses Home Page</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Home</title>
+    <link rel="stylesheet" href=".assets/css/all.min.css">
     <link rel="stylesheet" href="assets/css/home.css">
 </head>
-<?php 
-    session_start();
-    $courses = $_SESSION['courses'] ?? [];
-    ?>
-<body class="bg-dark text-light">
-    <div class="container my-5">
-        <h1 class="text-center mb-4">Our Courses</h1>
-        <div class="row">
-            <!-- Card 1 -->
-            <?php if (!empty($courses)): ?>
-            <?php foreach ($courses as $course): ?>
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 text-center">
-                <div class="card">
-                <img src="<?= htmlspecialchars($course['ImageUrl']) ?>" class="card-img-top" alt="Course Image">
-                <div class="card-body">
-                    <h5 class="card-title"><?= htmlspecialchars($course['Title']) ?></h5>
-                    <p class="card-text mb-1"><strong>Category:</strong> Programming</p>
-                    <p class="card-text mb-3"><strong>Price:</strong> <?= htmlspecialchars($course['Price']) ?></p>
-                    <a href="Views/course.php?id=<?= urlencode($course['Id']) ?>" class="btn btn-primary">View Details</a></div>
-            </div>
-        </div>
-    <?php endforeach; ?>
-<?php endif; ?>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<body>
+    <header>
+        <nav class="navbar">
+            <!-- Logo -->
+            <a href="home.php" class="logo">E-Learners</a>
+
+            <!-- Links for Desktop -->
+            <ul class="nav-links">
+                <li><a href="Views/AllCourses.php">All Courses</a></li>
+                <li><a href="Views/student.php">Enrolled Courses</a></li>
+                <li><a href="#">Certificates</a></li>
+                <li><a href="Views/contact.php">Contact Us</a></li>
+            </ul>
+
+            <!-- Auth Buttons -->
+            <div class="auth-buttons">
+                <a href="Views/login.php" class="login-btn">Login</a>
+                <a href="Views/register.php" class="register-btn">Register</a>
+            </div>
+
+            <!-- Hamburger Icon -->
+            <i class="fa-solid fa-bars menuIcon"></i>
+
+            <!-- Mobile Menu -->
+            <ul class="mobile-menu">
+                <li><a href="#">All Courses</a></li>
+                <li><a href="#">Enrolled Courses</a></li>
+                <li><a href="#">Certificates</a></li>
+                <li><a href="contact.php">Contact Us</a></li>
+                <li><a href="login.php" class="login-btn">Login</a></li>
+                <li><a href="register.php" class="register-btn">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+
+
+
+
+
+    <main>
+        <section class="hero">
+            <h1>Welcome to <span class="responsive-E-learning"> E-Learners</span></h1>
+            <p>Explore a variety of online courses and enhance your skills from the comfort of your home.</p>
+            <button class="explore-btn">Explore Courses</button>
+        </section>
+
+        <section class="features">
+            <h2>Why Choose E-Learners?</h2>
+            <div class="feature-cards">
+                <div class="card">
+                    <h3>Wide Range of Courses</h3>
+                    <p>Discover courses on various topics from technology to arts.</p>
+                </div>
+                <div class="card">
+                    <h3>Expert Instructors</h3>
+                    <p>Learn from industry experts and enhance your learning experience.</p>
+                </div>
+                <div class="card">
+                    <h3>Get Certified</h3>
+                    <p>Earn certificates to showcase your achievements and skills.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="call-to-action">
+            <h2>Ready to Get Started?</h2>
+            <a href="login.php" class="cta-btn">Join Now</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 E-Learners. All rights reserved.</p>
+    </footer>
+
 </body>
+
 </html>
