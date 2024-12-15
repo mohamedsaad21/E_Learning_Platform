@@ -3,7 +3,7 @@
     session_start();
 
     // Fetch courses from the database
-    $sql = "SELECT * FROM `Courses`";
+    $sql = "SELECT courses.*, students_courses.* FROM `Courses` INNER JOIN courses.Id = students_courses.studentId";
     $result = mysqli_query($conn, $sql);
 
     if ($result && mysqli_num_rows($result) > 0) {
