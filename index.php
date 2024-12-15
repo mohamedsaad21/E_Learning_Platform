@@ -20,6 +20,8 @@
                 <li><a href="Views/student.php">Enrolled Courses</a></li>
                 <li><a href="#">Certificates</a></li>
                 <li><a href="Views/contact.php">Contact Us</a></li>                
+
+                
                 <?php session_start(); if(isset($_SESSION['role']) && $_SESSION['role'] === "Admin"):?>
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -58,7 +60,6 @@
                 <li><a href="#">Certificates</a></li>
                 <li><a href="contact.php">Contact Us</a></li>
                 <?php
-                        session_start();
                         if(isset($_SESSION['user_id'])):?>
                             <li><a href="#" class="login-btn"> <?php echo $_SESSION['username'] ?> </a></li>
                             <li><a href="Controllers/Logout.php" class="register-btn">Log Out</a></li>
