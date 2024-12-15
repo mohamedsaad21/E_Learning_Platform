@@ -20,7 +20,7 @@
                 <li><a href="Views/student.php">Enrolled Courses</a></li>
                 <li><a href="#">Certificates</a></li>
                 <li><a href="Views/contact.php">Contact Us</a></li>                
-                <?php session_start(); if($_SESSION['role'] === "Admin"):?>
+                <?php session_start(); if(isset($_SESSION['role']) && $_SESSION['role'] === "Admin"):?>
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Content Management
