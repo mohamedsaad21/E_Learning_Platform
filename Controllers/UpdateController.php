@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
         $_SESSION['Descriptions'] = $description;
         $_SESSION['CategoryId'] = $categoryId;
         $_SESSION['Price'] = $price;
-        header("Location: ../Views/addcourses.php");
+        header("Location: ../Views/updatecourse.php");
         exit();
     }
 
@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
 
     if (mysqli_num_rows($checkResult) == 0) {
         $_SESSION['error'] = "Invalid category ID.";
-        header("Location: ../Views/addcourses.php");
+        header("Location: ../Views/updatecourse.php");
         exit();
     }
 
@@ -37,13 +37,13 @@ if (isset($_POST['submit'])) {
         $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
         if (!in_array($fileType, $allowedTypes)) {
             $_SESSION['error'] = "Invalid file type. Only JPG, JPEG, PNG, and GIF are allowed.";
-            header("Location: ../Views/addcourses.php");
+            header("Location: ../Views/updatecourse.php");
             exit();
         }
 
         if (!move_uploaded_file($_FILES['Thumbnail']['tmp_name'], $targetFilePath)) {
             $_SESSION['error'] = "Failed to upload the file.";
-            header("Location: ../Views/addcourses.php");
+            header("Location: ../Views/updatecourse.php");
             exit();
         }
 
@@ -56,7 +56,7 @@ if (isset($_POST['submit'])) {
             $imageURL = $row['ImageUrl'];
         } else {
             $_SESSION['error'] = "Thumbnail is required.";
-            header("Location: ../Views/addcourses.php");
+            header("Location: ../Views/updatecourse.php");
             exit();
         }
     }
@@ -76,9 +76,9 @@ if (isset($_POST['submit'])) {
         header("Location: ../Views/AllCourses.php");
     } else {
         $_SESSION['error'] = "Failed to update course. Please try again.";
-        header("Location: ../Views/addcourses.php");
+        header("Location: ../Views/updatecourse.php");
     }
 } else {
-    header("Location: ../Views/addcourses.php");
+    header("Location: ../Views/updatecourse.php");
 }
 ?>

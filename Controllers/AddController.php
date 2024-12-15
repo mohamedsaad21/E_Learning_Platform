@@ -9,7 +9,7 @@ if (isset($_POST['submit'])) {
     $price = floatval($_POST['Price']);
 
     if (!empty($_FILES['Thumbnail']['name'])) {
-        $targetDir = "../assets/imgs/Courses/";
+        $targetDir = "assets/imgs/Courses/";
         $fileName = basename($_FILES['Thumbnail']['name']);
         $targetFilePath = $targetDir . $fileName;
         $fileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));

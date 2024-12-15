@@ -11,7 +11,6 @@
     }
     $email = validate($_POST['email']);
     $password = validate($_POST['password']);
-    $MyRole = $_POST['rule'];
 
     if(empty($email)){
         header("Location: ../Views/login.php?error=Email is required");
@@ -19,24 +18,19 @@
     }else if(empty($password)){
         header("Location: ../Views/login.php?error=Password is required");
     }
-    if($MyRole === 'student'){
-        $sql = "SELECT * FROM Students WHERE Email = '$email' AND Password = '$password'";
-    }else if($MyRole === 'instructor'){        
-        $sql = "SELECT * FROM Instructors WHERE Email = '$email' AND Password = '$password'";
-    }else{
-        header("Location: ../Views/login.php?error=Choose Student or Instructor");
-    }
 
+    $sql = "SELECT *, role_name FROM users INNER JOIN roles ON roles.role_id = users.role_id WHERE Email = '$email' AND Password = '$password'";
+    
     $result = mysqli_query($conn, $sql);
     if(mysqli_num_rows($result) === 1){
         $row = mysqli_fetch_assoc($result);
         if($row['Email'] === $email && $row['Password'] === $password){
+            $_SESSION['username'] = $row['Username'];
             $_SESSION['Email'] = $row['Email'];
-            $_SESSION['Id'] = $row['Id'];
-            if($MyRole === 'student'){
-                $_SESSION['Name'] = $row['firstname'] . " " . $row['lastname'];
-                header("Location: StudentController.php");
-            }
+            $_SESSION['user_id'] = $row['Id'];
+            $_SESSION['role'] = $row['role_name'];
+            $_SESSION['Name'] = $row['firstname'] . " " . $row['lastname'];
+            header("Location: ../index.php");
         }else{
             header("Location: ../Views/login.php?error=Incorrect userName or Password");
             exit();

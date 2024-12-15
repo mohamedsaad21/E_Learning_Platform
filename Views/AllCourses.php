@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include "../config/database.php";
 $sql = "SELECT * FROM Courses";
 $result = mysqli_query($conn, $sql);
@@ -19,15 +19,22 @@ if ($result && mysqli_num_rows($result) > 0) {
     <title>Courses Home Page</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="assets/css/home.css">
 </head>
 <?php 
-    session_start();
     $courses = $_SESSION['courses'] ?? [];
     ?>
 <body class="bg-dark text-light">
     <div class="container my-5">
         <h1 class="text-center mb-4">Our Courses</h1>
+        <div class="row mb-5">
+            <?php if($_SESSION['role'] === "Admin"):?>
+                <a class="text-decoration-none" href="../Controllers/AddController.php">
+                    <i class="bi bi-plus-circle"></i> Add New Course
+                </a>
+            <?php endif?>
+        </div>
         <div class="row">
             <!-- Card 1 -->
             <?php if (!empty($courses)): ?>
@@ -40,8 +47,10 @@ if ($result && mysqli_num_rows($result) > 0) {
                     <p class="card-text mb-1"><strong>Category:</strong> Programming</p>
                     <p class="card-text mb-3"><strong>Price:</strong> <?= htmlspecialchars($course['Price']) ?></p>
                     <a href="course.php?id=<?= urlencode($course['Id']) ?>" class="btn btn-primary">View Details</a></div>
-                    <a href="updatecourse.php?id=<?= urlencode($course['Id']) ?>" class="btn btn-primary">Edit</a></div>
-                    <a href="deletecourse.php?id=<?= urlencode($course['Id']) ?>" class="btn btn-primary">Delete</a></div>
+                    <?php if($_SESSION['role'] === "Admin"):?>
+                        <a href="updatecourse.php?id=<?= urlencode($course['Id']) ?>" class="btn btn-primary">Edit</a></div>
+                        <a href="deletecourse.php?id=<?= urlencode($course['Id']) ?>" class="btn btn-primary">Delete</a></div>
+                    <?php endif?>
             </div>
         </div>
     <?php endforeach; ?>

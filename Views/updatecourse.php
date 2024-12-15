@@ -84,13 +84,5 @@ if (!$categoriesResult) {
         </form>
     </div>
 </div>
-<script src="https://cdn.tiny.cloud/1/2um2dwstdwdb0wg2wpzndpvu8dsrau4zl8vc5q7b6bb719yq/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
-<script>
-    tinymce.init({
-        selector: 'textarea',
-        plugins: 'link image media table lists wordcount',
-        toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | bullist numlist',
-    });
-</script>
 </body>
 </html>

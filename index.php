@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href=".assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/home.css">
 </head>
-
 <body>
     <header>
         <nav class="navbar">
@@ -20,13 +19,33 @@
                 <li><a href="Views/AllCourses.php">All Courses</a></li>
                 <li><a href="Views/student.php">Enrolled Courses</a></li>
                 <li><a href="#">Certificates</a></li>
-                <li><a href="Views/contact.php">Contact Us</a></li>
+                <li><a href="Views/contact.php">Contact Us</a></li>                
+                <?php session_start(); if($_SESSION['role'] === "Admin"):?>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Content Management
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="Areas/Admin/Courses.php">Courses</a></li>
+                        <li><a class="dropdown-item" href="#">Users</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <?php endif?>
             </ul>
 
             <!-- Auth Buttons -->
             <div class="auth-buttons">
-                <a href="Views/login.php" class="login-btn">Login</a>
-                <a href="Views/register.php" class="register-btn">Register</a>
+                <?php
+                        if(isset($_SESSION['user_id'])):?>
+                            <a href="#" class="login-btn"> <?php echo $_SESSION['username'] ?> </a>
+                            <a href="Controllers/Logout.php" class="register-btn">Log Out</a>
+                        <?php else:?>
+                            <a href="Views/login.php" class="login-btn">Login</a>
+                            <a href="Views/register.php" class="register-btn">Register</a>
+                        <?php endif
+                ?>
             </div>
 
             <!-- Hamburger Icon -->
@@ -38,12 +57,19 @@
                 <li><a href="#">Enrolled Courses</a></li>
                 <li><a href="#">Certificates</a></li>
                 <li><a href="contact.php">Contact Us</a></li>
-                <li><a href="login.php" class="login-btn">Login</a></li>
-                <li><a href="register.php" class="register-btn">Register</a></li>
+                <?php
+                        session_start();
+                        if(isset($_SESSION['user_id'])):?>
+                            <li><a href="#" class="login-btn"> <?php echo $_SESSION['username'] ?> </a></li>
+                            <li><a href="Controllers/Logout.php" class="register-btn">Log Out</a></li>
+                        <?php else:?>
+                            <li><a href="Views/login.php" class="login-btn">Login</a></li>
+                            <li><a href="Views/register.php" class="register-btn">Register</a></li>
+                        <?php endif
+                ?>
             </ul>
         </nav>
     </header>
-
 
 
 
@@ -84,6 +110,8 @@
     <footer>
         <p>&copy; 2024 E-Learners. All rights reserved.</p>
     </footer>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/all.min.js"></script>
 
 </body>
 

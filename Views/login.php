@@ -25,12 +25,12 @@
               <p class="error"><?php echo $_SESSION['error'] ?></p>
             </div>
           <?php } ?>
-          <div class="typeContainer">
+          <!-- <div class="typeContainer">
             <input type="radio" name="rule" class="userType" id="student" value="student">
             <label for="student">Student</label>
             <input type="radio" name="rule" class="userType" id="instructor" value="instructor">
             <label for="instructor">Instructor</label>
-          </div>
+          </div> -->
           <input type="email" id="loginEmail" name="email" required placeholder="Enter Email" value="<?php 
           if(isset($_SESSION['email'])) echo $_SESSION['email'];
           unset($_SESSION['email']); 

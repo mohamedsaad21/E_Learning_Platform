@@ -88,12 +88,7 @@ function sendemail_verify($name, $email, $verify_token) {
 
         $verify_token = md5(rand());
 
-        $check_email_query = "SELECT email FROM students WHERE email = '$email'";
-        $check_email_query_run = mysqli_query($conn, $check_email_query);
-        if(mysqli_num_rows($check_email_query_run) > 0){
-            header("Location: ../Views/register.php?error=Email Already Exists");
-        }
-        $check_email_query = "SELECT email FROM instructors WHERE email = '$email'";
+        $check_email_query = "SELECT email FROM users WHERE email = '$email'";
         $check_email_query_run = mysqli_query($conn, $check_email_query);
         if(mysqli_num_rows($check_email_query_run) > 0){
             header("Location: ../Views/register.php?error=Email Already Exists");
@@ -101,8 +96,12 @@ function sendemail_verify($name, $email, $verify_token) {
 
         if($password === $confirmPassword){
             if($MyRole === 'student'){
-                $query = "INSERT INTO `students`(`FirstName`, `LastName`, `Username`, `Email`, `Password`, `verify_token`)
-                 VALUES ('$firstname','$lastname','$username','$email','$password', '$verify_token')";
+                $role_query = "SELECT role_id FROM roles WHERE role_name = 'Student'";
+                $role_result = mysqli_query($conn, $role_query);
+                $role_row = mysqli_fetch_assoc($role_result);
+                $role_id = $role_row['role_id'];
+                $query = "INSERT INTO `users`(`FirstName`, `LastName`, `Username`, `Email`, `Password`, `verify_token`, `role_id`)
+                 VALUES ('$firstname','$lastname','$username','$email','$password', '$verify_token', '$role_id')";
                 $query_run = mysqli_query($conn, $query); 
                 if(!$query_run){
                     sendemail_verify("$firstname", "$email", "$verify_token");
@@ -110,8 +109,12 @@ function sendemail_verify($name, $email, $verify_token) {
                 }              
                 header("Location:../index.php");
             }else if($MyRole === 'instructor'){
-                $query = "INSERT INTO `instructors`(`FirstName`, `LastName`, `Username`, `Email`, `Password`, `verify_token`) 
-                VALUES ('$firstname','$lastname','$username','$email','$password', '$verify_token')";
+                $role_query = "SELECT role_id FROM roles WHERE role_name = 'Instructor'";
+                $role_result = mysqli_query($conn, $role_query);
+                $role_row = mysqli_fetch_assoc($role_result);
+                $role_id = $role_row['role_id'];
+                $query = "INSERT INTO `users`(`FirstName`, `LastName`, `Username`, `Email`, `Password`, `verify_token`, `role_id`) 
+                VALUES ('$firstname','$lastname','$username','$email','$password', '$verify_token',  '$role_id')";
                 $query_run = mysqli_query($conn, $query);
                 if(!$query_run){
                     header("Location: ../Views/register.php?error=Can't register");
