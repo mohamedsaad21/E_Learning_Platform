@@ -27,7 +27,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="Areas/Admin/Courses.php">Courses</a></li>
-                        <li><a class="dropdown-item" href="#">Users</a></li>
+                        <li><a class="dropdown-item" href="Areas/Admin/Users.php">Users</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
@@ -70,12 +70,6 @@
             </ul>
         </nav>
     </header>
-
-
-
-
-
-
     <main>
         <section class="hero">
             <h1>Welcome to <span class="responsive-E-learning"> E-Learners</span></h1>

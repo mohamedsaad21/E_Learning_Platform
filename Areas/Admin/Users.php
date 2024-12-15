@@ -4,7 +4,7 @@ if($_SESSION['role'] != "Admin"){
     header("Location: ../../AccessDenied.php");
 }
 include "../../config/database.php";
- $query ="SELECT courses.*, Username FROM courses INNER JOIN users ON users.Id = courses.InstructorId";  
+ $query ="SELECT users.*, roles.role_name FROM users INNER JOIN roles ON users.Id = roles.role_id";  
  $result = mysqli_query($conn, $query);  
  ?>  
  <!DOCTYPE html>  
@@ -35,8 +35,11 @@ include "../../config/database.php";
                      <table id="course_data" class="table table-striped table-bordered">  
                           <thead>  
                                <tr>  
-                                    <td>Title</td>  
-                                    <td>Instructor</td> 
+                                    <td>First Name</td>  
+                                    <td>Last Name</td>  
+                                    <td>Username</td> 
+                                    <td>Email</td> 
+                                    <td>Role</td> 
                                     <td></td> 
                                </tr>  
                           </thead>  
@@ -45,8 +48,11 @@ include "../../config/database.php";
                           {  
                                echo '  
                                <tr>  
-                                    <td>'.$row["Title"].'</td>  
+                                    <td>'.$row["FirstName"].'</td>  
+                                    <td>'.$row["LastName"].'</td>  
                                     <td>'.$row["Username"].'</td>                                      
+                                    <td>'.$row["Email"].'</td>                                      
+                                    <td>'.$row["role_name"].'</td>                                      
                                     <td>
                                         <a href="UpdateController.php" class="btn btn-warning">
                                             <i class="bi bi-pencil-square"></i>  Edit
