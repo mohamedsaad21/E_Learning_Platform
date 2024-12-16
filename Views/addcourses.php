@@ -81,6 +81,18 @@ if (!$result) {
                     <label class="custom-file-label" for="Thumbnail">Choose picture...</label>
                     <span class="text-danger" data-validation-for="Thumbnail"></span>
                 </div>
+
+                <div class="form-group">
+                    <!-- Input for number of sections -->
+                    <label>Number of Sections:</label>
+                    <input type="number" id="num_sections" min="1" max="10" required>
+                    <button type="button" onclick="generateSections()">Add Sections</button>
+
+                    <hr>
+                    <!-- Sections Container -->
+                    <div id="sections_container"></div>
+                    <span class="text-danger" data-validation-for="Thumbnail"></span>
+                </div>
                 <input class="btn" type="submit" value="Create" name="submit">
             </form>
         </div>
@@ -94,6 +106,41 @@ if (!$result) {
 
     <script src="https://cdn.tiny.cloud/1/onwc6tv37kcq7dykoko9t9rkug20er3cy9ohpz2thhx161aw/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
+
+                                        // Function to generate dynamic sections
+            function generateSections() {
+            const numSections = document.getElementById('num_sections').value;
+            const container = document.getElementById('sections_container');
+
+            // Clear previous content
+            container.innerHTML = '';
+
+            // Generate sections and video inputs dynamically
+            for (let i = 0; i < numSections; i++) {
+                const sectionDiv = document.createElement('div');
+                sectionDiv.className = 'section';
+                sectionDiv.innerHTML = `
+                    <h6>Section ${i + 1}</h6>
+                    <label>Section Title:</label>
+                    <input type="text" name="sections[${i}][section_title]" required><br>
+
+                    <label>Section Description:</label>
+                        <textarea id="Descriptions" name="Descriptions" class="form-control" placeholder="Description" value="<?php 
+                        if (isset($_SESSION['Descriptions'])) echo htmlspecialchars($_SESSION['Descriptions']);
+                        unset($_SESSION['Descriptions']);
+                    ?>"></textarea><br>
+
+                    <label>Videos:</label>
+                    <input type="file" id="videos_${i}" min="1" max="10" accept="video/*" multiple required>
+
+                `;
+                container.appendChild(sectionDiv);
+            }
+        }
+
+
+//######################################
+
     tinymce.init({
     selector: 'textarea',
     plugins: [
@@ -112,6 +159,8 @@ if (!$result) {
     ],
     ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
     });
+
+
 </script>
 </body>
 </html>
