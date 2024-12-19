@@ -18,16 +18,92 @@ if ($result && mysqli_num_rows($result) > 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Courses Home Page</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="../assets/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/allcourses.css">
 </head>
 <?php 
     $courses = $_SESSION['courses'] ?? [];
     ?>
-<body class="bg-dark text-light">
-    <div class="container my-5">
-        <h1 class="text-center mb-4">Our Courses</h1>
+<body>
+
+<header>
+        <nav class="navbar">
+            <!-- Logo -->
+            <a href="../index.php" class="logo">E-Learners</a>
+
+            <!-- Links for Desktop -->
+            <ul class="nav-links">
+                <li><a href="AllCourses.php">All Courses</a></li>
+                <li><a href="student.php">Enrolled Courses</a></li>
+                <li><a href="#">Certificates</a></li>
+                <li><a href="contact.php">Contact Us</a></li>                
+
+                <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Admin"):?>
+                    <li class="nav-item dropdown">
+                    <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Content Management
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../Areas/Admin/Courses.php">Courses</a></li>
+                        <li><a class="dropdown-item" href="../Areas/Admin/Users.php">Users</a></li>
+                    </ul>
+                </li>
+                <?php endif?>
+            </ul>
+
+            <!-- Auth Buttons -->
+            <div class="auth-buttons">
+                <?php
+                        if(isset($_SESSION['user_id'])):?>
+                            <a href="#" class="login-btn"> <?php echo $_SESSION['username'] ?> </a>
+                            <a href="../Controllers/Logout.php" class="register-btn">Log Out</a>
+                        <?php else:?>
+                            <a href="login.php" class="login-btn">Login</a>
+                            <a href="register.php" class="register-btn">Register</a>
+                        <?php endif
+                ?>
+            </div>
+
+            <!-- Hamburger Icon -->
+            <i class="fa-solid fa-bars menuIcon"></i>
+
+            <!-- Mobile Menu -->
+            <ul class="mobile-menu">
+                <li><a href="#">All Courses</a></li>
+                <li><a href="#">Enrolled Courses</a></li>
+                <li><a href="#">Certificates</a></li>
+                <li><a href="contact.php">Contact Us</a></li>
+                
+                <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Admin"):?>
+                    <li class="nav-item dropdown">
+                    <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Content Management
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../Areas/Admin/Courses.php">Courses</a></li>
+                        <li><a class="dropdown-item" href="../Areas/Admin/Users.php">Users</a></li>
+                    </ul>
+                </li>
+                <?php endif?>
+                
+                <?php
+                        if(isset($_SESSION['user_id'])):?>
+                            <li><a href="#" class="login-btn"> <?php echo $_SESSION['username'] ?> </a></li>
+                            <li><a href="../Controllers/Logout.php" class="register-btn">Log Out</a></li>
+                        <?php else:?>
+                            <li><a href="login.php" class="login-btn">Login</a></li>
+                            <li><a href="register.php" class="register-btn">Register</a></li>
+                        <?php endif
+                ?>
+
+
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="text-center">Our Courses</h1>
         <div class="row mb-5">
             <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Admin"):?>
                 <a class="text-decoration-none" href="../Controllers/AddController.php">
@@ -39,22 +115,24 @@ if ($result && mysqli_num_rows($result) > 0) {
             <!-- Card 1 -->
             <?php if (!empty($courses)): ?>
             <?php foreach ($courses as $course): ?>
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 text-center">
-                <div class="card">
-                <img src="../<?= htmlspecialchars($course['ImageUrl']) ?>" class="card-img-top" alt="Course Image">
-                <div class="card-body">
-                    <h5 class="card-title"><?= htmlspecialchars($course['Title']) ?></h5>
-                    <p class="card-text mb-1"><strong>Category:</strong> Programming</p>
-                    <p class="card-text mb-3"><strong>Price:</strong> <?= htmlspecialchars($course['Price']) ?></p>
-                    <a href="course.php?id=<?= urlencode($course['Id']) ?>" class="btn btn-primary">View Details</a></div>
-                    <?php if($_SESSION['role'] === "Admin"):?>
-                        <a href="updatecourse.php?id=<?= urlencode($course['Id']) ?>" class="btn btn-primary">Edit</a></div>
-                        <a href="deletecourse.php?id=<?= urlencode($course['Id']) ?>" class="btn btn-primary">Delete</a></div>
-                    <?php endif?>
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-6 text-center">
+                    <div class="card mb-5 border border-dark-subtle">
+                    <img src="../<?= htmlspecialchars($course['ImageUrl']) ?>" alt="Course Image">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= htmlspecialchars($course['Title']) ?></h5>
+                        <p class="card-text mb-1"><strong>Category:</strong> Programming</p>
+                        <p class="card-text mb-3"><strong>Price:</strong> <?= htmlspecialchars($course['Price']) ?></p>
+                        <a href="course.php?id=<?= urlencode($course['Id']) ?>" class="btn btn-primary">View Details</a></div>
+                        <?php if($_SESSION['role'] === "Admin"):?>
+                            <a href="updatecourse.php?id=<?= urlencode($course['Id']) ?>" class=" w-25 m-auto mb-1 btn btn-primary">Edit</a>
+                            <a href="deletecourse.php?id=<?= urlencode($course['Id']) ?>" class=" w-25 m-auto mb-1 btn btn-primary">Delete</a>
+                            <?php endif?>
+                    </div>
+                </div>
+                <?php endforeach; ?>
             </div>
-        </div>
-    <?php endforeach; ?>
-<?php endif; ?>
+            <?php endif; ?>
+    </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>

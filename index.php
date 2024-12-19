@@ -24,7 +24,7 @@
                 
                 <?php session_start(); if(isset($_SESSION['role']) && $_SESSION['role'] === "Admin"):?>
                     <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Content Management
                     </a>
                     <ul class="dropdown-menu">
