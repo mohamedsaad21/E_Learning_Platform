@@ -14,11 +14,6 @@
       <!-- Login Form -->
       <div class="forms">
         <form action="../Controllers/LoginController.php" method="post" class="form" id="loginForm">
-        <?php if(isset($_SESSION['success'])){ ?>
-            <div class="alert alert-success" role="alert">
-              <p class="success"><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></p>
-            </div>
-          <?php } ?>
           <h2 class="formType">Login</h2>
           <?php if(isset($_SESSION['error'])){ ?>
             <div class="alert alert-danger" role="alert">

@@ -10,7 +10,7 @@
      <!DOCTYPE html>  
      <html>  
           <head>  
-               <title>Course List</title>  
+               <title>Users List</title>  
                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
                <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>  
@@ -67,10 +67,7 @@
                                         <td>'.$row["Username"].'</td>                                      
                                         <td>'.$row["Email"].'</td>                                      
                                         <td>'.$row["role_name"].'</td>                                      
-                                        <td>
-                                             <a href="AddController.php" class="btn btn-primary">
-                                             <i class="fa-solid fa-user-plus"></i> Add
-                                             </a>
+                                        <td>                                             
                                              <a href="UpdateController.php" class="btn btn-warning">
                                              <i class="bi bi-pencil-square"></i>  Edit
                                              </a>                                      

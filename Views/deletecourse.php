@@ -52,7 +52,7 @@ if (!$categoriesResult) {
         <?php } ?>
         <form action="../Controllers/DeleteCourseController.php" method="post">
             <!-- ERROR -->
-            <input type="hidden" name="courseId" value="<?php echo htmlspecialchars($course['id']); ?>">
+            <input type="hidden" name="courseId" value="<?php echo $courseId ?>">
             <div class="form-group">
                 <label for="Name">Name</label>
                 <input disabled id="Name" name="Name" class="form-control" placeholder="Name" value="<?php echo htmlspecialchars($course['Title']); ?>" required>
@@ -78,7 +78,7 @@ if (!$categoriesResult) {
             </div>
             <div class="form-group">
                 <label for="Thumbnail">Thumbnail</label>
-                <img id="thumbnail" src="<?php echo htmlspecialchars($course['ImageUrl']); ?>" alt="Thumbnail" style="max-width: 35%; margin-top: 10px;">
+                <img id="thumbnail" src="../<?php echo htmlspecialchars($course['ImageUrl']); ?>" alt="Thumbnail" style="max-width: 35%; margin-top: 10px;">
             </div>
             <button class="btn" type="submit" name="delete">Delete Course</button>
         </form>
