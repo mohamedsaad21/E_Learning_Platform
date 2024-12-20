@@ -7,9 +7,10 @@ if (isset($_POST['submit'])) {
     $description = mysqli_real_escape_string($conn, $_POST['Descriptions']);
     $categoryId = intval($_POST['categoryId']);
     $price = floatval($_POST['Price']);
+    $InstructorId = $_SESSION['user_id'];
 
     if (!empty($_FILES['Thumbnail']['name'])) {
-        $targetDir = "assets/imgs/Courses/";
+        $targetDir = "../assets/imgs/Courses/";
         $fileName = basename($_FILES['Thumbnail']['name']);
         $targetFilePath = $targetDir . $fileName;
         $fileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
@@ -53,8 +54,8 @@ if (isset($_POST['submit'])) {
         exit();
     }
 
-    $query = "INSERT INTO courses (Title, Description, CategoryId, Price, ImageUrl) 
-              VALUES ('$title', '$description', $categoryId, $price, '$imageURL')";
+    $query = "INSERT INTO courses (Title, Description, CategoryId, Price, ImageUrl, 'InstructorId') 
+              VALUES ('$title', '$description', $categoryId, $price, '$imageURL', '$InstructorId')";
 
     $result = mysqli_query($conn, $query);
 
@@ -69,5 +70,3 @@ if (isset($_POST['submit'])) {
     header("Location: ../Views/addcourses.php");
 }
 ?>
-
-

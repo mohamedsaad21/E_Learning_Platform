@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/home.css">
 </head>
+<?php session_start();?>
 <body>
     <header>
         <nav class="navbar">
@@ -16,13 +17,19 @@
 
             <!-- Links for Desktop -->
             <ul class="nav-links">
-                <li><a href="Views/AllCourses.php">All Courses</a></li>
-                <li><a href="Views/student.php">Enrolled Courses</a></li>
-                <li><a href="#">Certificates</a></li>
+                <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Instructor"): ?>
+                    <li><a href="Views/InstructorCourses.php">All Courses</a></li>
+                <?php endif?>
+                <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Student"): ?>
+                    <li><a href="Views/student.php">Enrolled Courses</a></li>
+                <?php endif?>
+                <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Student"): ?>
+                    <li><a href="#">Certificates</a></li>
+                <?php endif?>
                 <li><a href="Views/contact.php">Contact Us</a></li>                
 
-                
-                <?php session_start(); if(isset($_SESSION['role']) && $_SESSION['role'] === "Admin"):?>
+
+                <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Admin"):?>
                     <li class="nav-item dropdown">
                     <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Content Management

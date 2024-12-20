@@ -1,7 +1,8 @@
 <?php
 session_start();
 include "../config/database.php";
-$sql = "SELECT * FROM Courses";
+$Instructor_id = $_SESSION['user_id'];
+$sql = "SELECT * FROM Courses WHERE InstructorId = $Instructor_id";
 $result = mysqli_query($conn, $sql);
 if ($result && mysqli_num_rows($result) > 0) {
     // Fetch all rows and store them in a session
@@ -105,7 +106,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     <div class="container">
         <h1 class="text-center">Our Courses</h1>
         <div class="row mb-5">
-            <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Admin"):?>
+            <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Instructor"):?>
                 <a class="text-decoration-none" href="../Controllers/AddController.php">
                     <i class="bi bi-plus-circle"></i> Add New Course
                 </a>
