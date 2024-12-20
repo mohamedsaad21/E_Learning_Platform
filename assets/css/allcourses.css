@@ -9,6 +9,7 @@
 body {
   font-family: "Parkinsans", sans-serif;
   position: relative;
+  height: 100vh;
 }
 
 header {

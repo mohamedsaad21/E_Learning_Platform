@@ -17,12 +17,24 @@ include "../../config/database.php";
            <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>            
            <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" /> 
            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> 
+           <link rel="stylesheet" href="../../assets/css/AdminCourses.css">
+
       </head>  
       <body>  
+      <div class="navbar">
+               <h2>E-Learners</h2>
+               <a href="../../index.php">Home</a>
+               <a href="../../Views/AllCourses.php">All Courses</a>
+               <a href="#">Enrolled Courses</a>
+               <a href="">Certificates</a>
+               <a href="../../Views/Contact.php">Contact Us</a>
+               <a href="../../Controllers/Logout.php" class="btn btn-danger">Logout</a>
+          </div>
            <br /><br />  
            <div class="container">  
-                <h3 align="center">Course List</h3>  
-                <br />  
+           <div class="admin-dashboard-header">
+                    <h1>Admin Dashboard</h1>
+               </div>  
                 <div class="row mb-5">
                 <?php 
                 if($_SESSION['role'] === "Admin"):?>
