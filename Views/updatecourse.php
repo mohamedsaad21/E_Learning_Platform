@@ -51,7 +51,7 @@ if (!$categoriesResult) {
             </div>
         <?php } ?>
         <form action="../Controllers/UpdateController.php" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="courseId" value="<?php echo htmlspecialchars($course['id']); ?>">
+            <input type="hidden" name="courseId" value="<?php echo $courseId ?>">
             <div class="form-group">
                 <label for="Name">Name</label>
                 <input id="Name" name="Name" class="form-control" placeholder="Name" value="<?php echo htmlspecialchars($course['Title']); ?>" required>
@@ -77,9 +77,10 @@ if (!$categoriesResult) {
             </div>
             <div class="form-group">
                 <label for="Thumbnail">Thumbnail</label>
-                <img id="thumbnail" src="<?php echo htmlspecialchars($course['ImageUrl']); ?>" alt="Thumbnail" style="max-width: 35%; margin-top: 10px;">
+                <img id="thumbnail" src="../<?php echo htmlspecialchars($course['ImageUrl']); ?>" alt="Thumbnail" style="max-width: 35%; margin-top: 10px;">
                 <input type="file" id="Thumbnail" name="Thumbnail" accept="image/*" onchange="document.getElementById('thumbnail').src = window.URL.createObjectURL(this.files[0])">
             </div>
+            
             <button class="btn" type="submit" name="submit">Update Course</button>
         </form>
     </div>
