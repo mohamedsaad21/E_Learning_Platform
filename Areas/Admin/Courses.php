@@ -4,7 +4,7 @@ if($_SESSION['role'] != "Admin"){
     header("Location: ../../AccessDenied.php");
 }
 include "../../config/database.php";
- $query ="SELECT courses.*, Username FROM courses INNER JOIN users ON users.Id = courses.InstructorId";  
+ $query ="SELECT courses.*, Username, categories.Name FROM courses INNER JOIN users ON users.Id = courses.InstructorId INNER JOIN categories ON courses.categoryId = categories.Id";  
  $result = mysqli_query($conn, $query);  
  ?>  
  <!DOCTYPE html>  
@@ -37,6 +37,7 @@ include "../../config/database.php";
                                <tr>  
                                     <td>Title</td>  
                                     <td>Instructor</td> 
+                                    <td>Category</td> 
                                     <td></td> 
                                </tr>  
                           </thead>  
@@ -47,6 +48,7 @@ include "../../config/database.php";
                                <tr>  
                                     <td>'.$row["Title"].'</td>  
                                     <td>'.$row["Username"].'</td>                                      
+                                    <td>'.$row["Name"].'</td>                                      
                                     <td>
                                         <a href="UpdateController.php" class="btn btn-warning">
                                             <i class="bi bi-pencil-square"></i>  Edit
