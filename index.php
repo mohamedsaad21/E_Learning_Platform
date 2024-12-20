@@ -21,7 +21,10 @@
                     <li><a href="Views/InstructorCourses.php">All Courses</a></li>
                 <?php endif?>
                 <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Student"): ?>
-                    <li><a href="Views/student.php">Enrolled Courses</a></li>
+                    <li><a href="Views/AllCourses.php">All Courses</a></li>
+                <?php endif?>
+                <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Student"): ?>
+                    <li><a href="Controllers/EnrollCourseController.php">Enrolled Courses</a></li>
                 <?php endif?>
                 <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Student"): ?>
                     <li><a href="#">Certificates</a></li>
@@ -37,8 +40,6 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="Areas/Admin/Courses.php">Courses</a></li>
                         <li><a class="dropdown-item" href="Areas/Admin/Users.php">Users</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                 </li>
                 <?php endif?>

@@ -112,6 +112,7 @@ if ($stmt) {
   <form action="../Controllers/EnrollCourseController.php" method="post">
     <div class="course-details">
       <div class="course-image">
+      <input type="hidden" name="courseId" value="<?php echo $courseId ?>">
         <img src="<?= htmlspecialchars('../'.$course['ImageUrl'] ?: '../assets/imgs/Courses/default-course.jpg') ?>" 
             alt="<?= htmlspecialchars($course['Title']) ?> Image">
       </div>

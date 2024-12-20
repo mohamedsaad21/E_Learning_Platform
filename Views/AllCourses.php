@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "../config/database.php";
+$InstructorId = $_SESSION['user_id'];
 $sql = "SELECT * FROM Courses";
 $result = mysqli_query($conn, $sql);
 if ($result && mysqli_num_rows($result) > 0) {
@@ -117,7 +118,7 @@ if ($result && mysqli_num_rows($result) > 0) {
             <?php foreach ($courses as $course): ?>
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-5 text-center">
                     <div class="card mb-5 border border-dark-subtle">
-                    <img src="<?=htmlspecialchars($course['ImageUrl']) ?>" alt="Course Image">
+                    <img src="../<?= htmlspecialchars(str_replace('../', '', $course['ImageUrl'])) ?>" alt="Course Image">  
                     <div class="card-body">
                         <h5 class="card-title"><?= htmlspecialchars($course['Title']) ?></h5>
                         <p class="card-text mb-1"><strong>Category:</strong> Programming</p>

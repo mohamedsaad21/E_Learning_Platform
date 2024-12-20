@@ -1,8 +1,8 @@
 <?php
 session_start();
 include "../config/database.php";
-$Instructor_id = $_SESSION['user_id'];
-$sql = "SELECT * FROM Courses WHERE InstructorId = $Instructor_id";
+$InstructorId = $_SESSION['user_id'];
+$sql = "SELECT * FROM courses INNER JOIN students_courses ON courses.Id = students_courses.CourseId INNER JOIN users ON users.Id = students_courses.StudentId";
 $result = mysqli_query($conn, $sql);
 if ($result && mysqli_num_rows($result) > 0) {
     // Fetch all rows and store them in a session
@@ -27,6 +27,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     $courses = $_SESSION['courses'] ?? [];
     ?>
 <body>
+
 <header>
         <nav class="navbar">
             <!-- Logo -->
@@ -34,20 +35,10 @@ if ($result && mysqli_num_rows($result) > 0) {
 
             <!-- Links for Desktop -->
             <ul class="nav-links">
-                <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Instructor"): ?>
-                    <li><a href="InstructorCourses.php">All Courses</a></li>
-                <?php endif?>
-                <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Student"): ?>
-                    <li><a href="AllCourses.php">All Courses</a></li>
-                <?php endif?>
-                <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Student"): ?>
-                    <li><a href="../Controllers/EnrollCourseController.php">Enrolled Courses</a></li>
-                <?php endif?>
-                <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Student"): ?>
-                    <li><a href="#">Certificates</a></li>
-                <?php endif?>
+                <li><a href="AllCourses.php">All Courses</a></li>
+                <li><a href="student.php">Enrolled Courses</a></li>
+                <li><a href="#">Certificates</a></li>
                 <li><a href="contact.php">Contact Us</a></li>                
-
 
                 <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Admin"):?>
                     <li class="nav-item dropdown">
@@ -57,8 +48,6 @@ if ($result && mysqli_num_rows($result) > 0) {
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="../Areas/Admin/Courses.php">Courses</a></li>
                         <li><a class="dropdown-item" href="../Areas/Admin/Users.php">Users</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                 </li>
                 <?php endif?>
@@ -86,6 +75,19 @@ if ($result && mysqli_num_rows($result) > 0) {
                 <li><a href="#">Enrolled Courses</a></li>
                 <li><a href="#">Certificates</a></li>
                 <li><a href="contact.php">Contact Us</a></li>
+                
+                <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Admin"):?>
+                    <li class="nav-item dropdown">
+                    <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Content Management
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../Areas/Admin/Courses.php">Courses</a></li>
+                        <li><a class="dropdown-item" href="../Areas/Admin/Users.php">Users</a></li>
+                    </ul>
+                </li>
+                <?php endif?>
+                
                 <?php
                         if(isset($_SESSION['user_id'])):?>
                             <li><a href="#" class="login-btn"> <?php echo $_SESSION['username'] ?> </a></li>
@@ -95,13 +97,16 @@ if ($result && mysqli_num_rows($result) > 0) {
                             <li><a href="register.php" class="register-btn">Register</a></li>
                         <?php endif
                 ?>
+
+
             </ul>
         </nav>
     </header>
+
     <div class="container">
         <h1 class="text-center">Our Courses</h1>
         <div class="row mb-5">
-            <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Instructor"):?>
+            <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Admin"):?>
                 <a class="text-decoration-none" href="../Controllers/AddController.php">
                     <i class="bi bi-plus-circle"></i> Add New Course
                 </a>
@@ -113,17 +118,18 @@ if ($result && mysqli_num_rows($result) > 0) {
             <?php foreach ($courses as $course): ?>
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-5 text-center">
                     <div class="card mb-5 border border-dark-subtle">
-                    <img src="<?=htmlspecialchars($course['ImageUrl']) ?>" alt="Course Image">
-                    <div class="card-body">
+                    <img src="../<?= htmlspecialchars(str_replace('../', '', $course['ImageUrl'])) ?>" alt="Course Image">  
+                  <div class="card-body">
                         <h5 class="card-title"><?= htmlspecialchars($course['Title']) ?></h5>
                         <p class="card-text mb-1"><strong>Category:</strong> Programming</p>
                         <p class="card-text mb-3"><strong>Price:</strong> <?= htmlspecialchars($course['Price']) ?></p>
-                        <a href="course.php?id=<?= urlencode($course['Id']) ?>" class="btn btn-primary">View Details</a></div>
+                        <a href="course.php?id=<?= urlencode($course['Id']) ?>" class="btn btn-primary">View Details</a>
+                    </div>
                         <?php if($_SESSION['role'] === "Admin"):?>
                             <a href="updatecourse.php?id=<?= urlencode($course['Id']) ?>" class=" w-25 m-auto mb-1 btn btn-primary">Edit</a>
                             <a href="deletecourse.php?id=<?= urlencode($course['Id']) ?>" class=" w-25 m-auto mb-1 btn btn-primary">Delete</a>
                             <?php endif?>
-                    </div>
+                </div>
                 </div>
                 <?php endforeach; ?>
             </div>

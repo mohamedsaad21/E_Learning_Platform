@@ -54,7 +54,7 @@ if (isset($_POST['submit'])) {
         exit();
     }
 
-    $query = "INSERT INTO courses (Title, Description, CategoryId, Price, ImageUrl, 'InstructorId') 
+    $query = "INSERT INTO courses (Title, Description, CategoryId, Price, ImageUrl, InstructorId) 
               VALUES ('$title', '$description', $categoryId, $price, '$imageURL', '$InstructorId')";
 
     $result = mysqli_query($conn, $query);
