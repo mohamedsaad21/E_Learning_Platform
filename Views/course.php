@@ -124,6 +124,10 @@ if ($stmt) {
           <?= htmlspecialchars($course['Description']) ?>
         </p>
         <button type="submit" class="enroll-btn">Enroll Now</button>
+        <button type="button" class="cart-btn">
+          <i class="fas fa-shopping-cart"></> Add to Cart
+        </button>
+
       </div>
     </div>
   </form>

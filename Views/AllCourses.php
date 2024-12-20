@@ -115,7 +115,7 @@ if ($result && mysqli_num_rows($result) > 0) {
             <!-- Card 1 -->
             <?php if (!empty($courses)): ?>
             <?php foreach ($courses as $course): ?>
-                <div class="col-lg-4 col-md-6 col-sm-12 mb-6 text-center">
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-5 text-center">
                     <div class="card mb-5 border border-dark-subtle">
                     <img src="../<?= htmlspecialchars($course['ImageUrl']) ?>" alt="Course Image">
                     <div class="card-body">
@@ -134,7 +134,17 @@ if ($result && mysqli_num_rows($result) > 0) {
             <?php endif; ?>
     </div>
 
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content d-flex justify-content-evenly">
+                <span><b>E-Learners</b></span>
+                <span>&copy; 2024 E-Learners. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/all.min.js"></script>
 </body>
 </html>

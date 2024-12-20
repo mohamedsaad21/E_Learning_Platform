@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap');
+
+
+body {
+  display: flex;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f3f4f6;
+}
+
+.admin-dashboard-header h1 {
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+  color: #333; /* Dark gray for text */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Subtle shadow effect */
+  margin: 20px 0 40px;
+}
+
+
+.navbar {
+  width: 250px;
+  height: 100vh;
+  background-color: #1e293b;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.navbar h2 {
+  color: #ffc107;
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.navbar a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 18px;
+  margin: 10px 0;
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar .btn{
+  bottom: 0;
+}
+
+.navbar a:hover {
+  background-color: #374151;
+  color: #ffffff;
+}
+
+.container {
+  margin-left: 270px;
+  padding: 20px;
+}
+
+/* Table Styling */
+.table-responsive {
+  margin-top: 20px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table thead tr {
+  background-color: #58a2eb;
+  color: #ffffff;
+  text-align: left;
+}
+
+table thead th {
+  padding: 12px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+table tbody tr {
+  background-color: #f9f9f9;
+  transition: all 0.4s ease;
+}
+
+table tbody tr:hover {
+  background-color: #e0f0ff;
+}
+
+table td {
+  padding: 12px 15px;
+  font-size: 14px;
+  color: #333333;
+  border-bottom: 1px solid #dddddd;
+}
+
+/* Button Styling */
+.btn {
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+  transition:all 0.3s ease;
+}
+
+.btn-warning {
+  background-color: #ffcc00;
+  border: none;
+  color: #333333;
+}
+
+.btn-warning:hover {
+  background-color: #e6b800;
+}
+
+.btn-danger {
+  background-color: #ff4d4d;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #e60000;
+}

@@ -46,7 +46,7 @@ header {
   transition: color 0.3s;
   padding: 10px;
   border-radius: 5px;
-  transition: .4s ease;
+  transition: all .4s ease;
 }
 
 .nav-links a:hover {
@@ -67,8 +67,7 @@ header {
   text-decoration: none;
   padding: 0.5rem 1rem;
   border-radius: 5px;
-  /* font-weight: bold; */
-  transition: all 0.3s ease-in-out;
+  transition: all .4s ease;
 }
 
 .login-btn:hover,
@@ -109,7 +108,7 @@ header {
   display: block;
   text-align: center;
   font-size: 1rem;
-  transition: background-color 0.3s;
+  transition: all .4s ease;
 }
 
 .mobile-menu a:hover {
@@ -126,75 +125,98 @@ header {
 
 .course-details {
   display: flex;
-  justify-content: flex-start;
-  gap: 40px;
-  max-width: 900px;
-  margin: 150px auto;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 400px;
+  margin: 50px auto;
   padding: 20px;
-  background-color: #1e293b;
-  color: #ffffff;
+  background-color: #ffffff;
   border-radius: 12px;
   overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all .4s ease;
+}
+
+.course-details:hover {
+  transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .course-image img {
+  width: 100%;
   max-width: 300px;
-  border-radius: 12px;
-  border: 3px solid #333;
+  height: auto;
+  border-radius: 8px;
+  border-bottom: 2px solid #f0f0f0;
 }
 
 .course-info {
-  margin-top: 2rem;
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: center; */
+  padding: 20px;
 }
 
 .course-info h1 {
-  font-size: 28px;
-  color: #ffc107;
+  font-size: 24px;
+  color: #333;
+  font-weight: bold;
 }
 
 .course-price {
   margin: 15px 0;
-  font-size: 22px;
+  font-size: 20px;
+  color: #333;
 }
 
 .course-price .current-price {
-  color: #fff;
   font-weight: bold;
-}
-
-.course-price .old-price {
-  color: #ffc107;
-  text-decoration: line-through;
-  margin-left: 10px;
 }
 
 .course-description {
   margin: 20px 0;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.6;
-  color: #cbd5e1;
+  color: #666;
 }
 
 .enroll-btn {
-  padding: 12px 24px;
+  padding: 10px 15px;
   font-size: 16px;
   font-weight: bold;
-  color: #1e293b;
-  background-color: #ffc720;
+  color: #ffffff;
+  background-color: #007bff;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all .4s ease;
 }
 
 .enroll-btn:hover {
-  background-color: #ffbf00;
-  /* letter-spacing: 1.1px; */
-  scale: 1.05;
+  transform: scale(1.05);
+  background-color: #0056b3;
+}
+
+.cart-btn {
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #28a745;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all .4s ease;
+  margin-top: 10px;
+}
+
+.cart-btn i {
+  margin-right: 8px;
+  font-size: 18px;
+}
+
+.cart-btn:hover {
+  transform: scale(1.05);
+  background-color: #218838;
 }
 
 .footer {
