@@ -26,7 +26,7 @@ include "../../config/database.php";
                 <div class="row mb-5">
                 <?php 
                 if($_SESSION['role'] === "Admin"):?>
-                    <a class="text-decoration-none" href="../Controllers/AddController.php">
+                    <a class="text-decoration-none" href="../../Views/addcourses.php">
                         <i class="bi bi-plus-circle"></i> Add New Course
                     </a>
                 <?php endif?>
