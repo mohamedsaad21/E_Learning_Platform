@@ -25,6 +25,7 @@ include "../../config/database.php";
       <body>  
       <div class="navbar">
                <h2>E-Learners</h2>
+               <a href="../../Views/CourseSections.php?id=<?=urlencode($CourseId) ?>">Watch Course</a>
                <a href="../../index.php">Home</a>
                <a href="../../Views/AllCourses.php">All Courses</a>
                <a href="#">Enrolled Courses</a>

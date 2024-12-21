@@ -21,7 +21,6 @@ if (isset($_POST['submit'])) {
             header("Location: ../Views/addcourses.php");
             exit();
         }
-
         if (!move_uploaded_file($_FILES['Thumbnail']['tmp_name'], $targetFilePath)) {
             $_SESSION['error'] = "Failed to upload the file.";
             header("Location: ../Views/addcourses.php");
@@ -34,7 +33,6 @@ if (isset($_POST['submit'])) {
         header("Location: ../Views/addcourses.php");
         exit();
     }
-
     if (empty($title) || empty($description) || empty($price)) {
         $_SESSION['error'] = "All fields are required.";
         $_SESSION['Name'] = $title;
@@ -44,7 +42,6 @@ if (isset($_POST['submit'])) {
         header("Location: ../Views/addcourses.php");
         exit();
     }
-
     $checkCategoryQuery = "SELECT Id FROM categories WHERE Id = $categoryId";
     $checkResult = mysqli_query($conn, $checkCategoryQuery);
 
@@ -62,31 +59,37 @@ if (isset($_POST['submit'])) {
     if (isset($_POST['sections']) && is_array($_POST['sections'])) {
         foreach ($_POST['sections'] as $sectionIndex => $sectionData) {
             $sectionTitle = mysqli_real_escape_string($conn, $sectionData['section_title']);
+            
+            // Insert Section into courses_sections
             $insertSectionQuery = "INSERT INTO courses_sections (course_id, Title) VALUES ('$lastInsertedId', '$sectionTitle')";
             if (!mysqli_query($conn, $insertSectionQuery)) {
                 throw new Exception("Error inserting section: " . mysqli_error($conn));
             }
-
+    
             $sectionId = mysqli_insert_id($conn); // Get the inserted section ID
-
-            // 3. Insert Videos for the Section
-            if (isset($_FILES['sections']['name'][$sectionIndex]['videos']) && is_array($_FILES['sections']['name'][$sectionIndex]['videos'])) {
+    
+            // Process video uploads for the current section
+            if (!empty($_FILES['sections']['name'][$sectionIndex]['videos']) && is_array($_FILES['sections']['name'][$sectionIndex]['videos'])) {
                 foreach ($_FILES['sections']['name'][$sectionIndex]['videos'] as $videoIndex => $videoName) {
-                    if ($_FILES['sections']['error'][$sectionIndex]['videos'][$videoIndex] == UPLOAD_ERR_OK) {
+                    if ($_FILES['sections']['error'][$sectionIndex]['videos'][$videoIndex] === UPLOAD_ERR_OK) {
+                        $videoTmpName = $_FILES['sections']['tmp_name'][$sectionIndex]['videos'][$videoIndex];
                         $videoPath = '../assets/Videos/' . basename($videoName);
-                        move_uploaded_file($_FILES['sections']['tmp_name'][$sectionIndex]['videos'][$videoIndex], $videoPath);
-
-                        $videoTitle = "Video " . ($videoIndex + 1); // You can modify this to accept titles dynamically
-                        $insertVideoQuery = "INSERT INTO sections_videos (section_id, Title, video_url) VALUES ($sectionId, '$videoTitle', '$videoPath')";
-                        if (!mysqli_query($conn, $insertVideoQuery)) {
-                            throw new Exception("Error inserting video: " . mysqli_error($conn));
+    
+                        if (move_uploaded_file($videoTmpName, $videoPath)) {
+                            $videoTitle = "Video " . ($videoIndex + 1); // Customize video title if needed
+                            $insertVideoQuery = "INSERT INTO sections_videos (section_id, Title, video_url) VALUES ($sectionId, '$videoTitle', '$videoPath')";
+                            if (!mysqli_query($conn, $insertVideoQuery)) {
+                                throw new Exception("Error inserting video: " . mysqli_error($conn));
+                            }
+                        } else {
+                            throw new Exception("Failed to upload video: $videoName");
                         }
                     }
                 }
             }
         }
     }
-
+    
     if ($result) {
         $_SESSION['success'] = "Course added successfully.";
         header("Location: ../Views/InstructorCourses.php");

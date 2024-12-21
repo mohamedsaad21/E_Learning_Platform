@@ -131,13 +131,12 @@ if (!$result) {
                     ?>"></textarea><br>
 
                     <label>Videos:</label>
-                    <input type="file" id="videos_${i}" min="1" max="10" accept="video/*" multiple required>
+                    <input type="file" name="sections[${i}][videos][]" id="videos_${i}" min="1" max="10" accept="video/*" multiple required>
 
                 `;
                 container.appendChild(sectionDiv);
             }
         }
-
 
 //######################################
 
