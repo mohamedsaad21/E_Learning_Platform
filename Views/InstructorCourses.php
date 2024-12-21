@@ -130,14 +130,14 @@ if ($result && mysqli_num_rows($result) > 0) {
             <?php endif; ?>
     </div>
 
-    <footer class="footer">
+    <!-- <footer class="footer">
         <div class="container">
             <div class="footer-content d-flex justify-content-evenly">
                 <span><b>E-Learners</b></span>
                 <span>&copy; 2024 E-Learners. All rights reserved.</span>
             </div>
         </div>
-    </footer>
+    </footer> -->
 
     <!-- Bootstrap JS -->
     <script src="../assets/js/bootstrap.bundle.min.js"></script>

@@ -77,7 +77,7 @@ if (!$categoriesResult) {
             </div>
             <div class="form-group">
                 <label for="Thumbnail">Thumbnail</label>
-                <img id="thumbnail" src="../<?php echo htmlspecialchars($course['ImageUrl']); ?>" alt="Thumbnail" style="max-width: 35%; margin-top: 10px;">
+                <img id="thumbnail" src="../<?php echo htmlspecialchars(str_replace('../', '', $course['ImageUrl'])); ?>" alt="Thumbnail" style="max-width: 35%; margin-top: 10px;">
                 <input type="file" id="Thumbnail" name="Thumbnail" accept="image/*" onchange="document.getElementById('thumbnail').src = window.URL.createObjectURL(this.files[0])">
             </div>
             

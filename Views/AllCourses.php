@@ -13,7 +13,6 @@ if ($result && mysqli_num_rows($result) > 0) {
     $_SESSION['courses'] = []; // Empty array if no data found
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +43,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                     <li><a href="AllCourses.php">All Courses</a></li>
                 <?php endif?>
                 <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Student"): ?>
-                    <li><a href="../Controllers/EnrollCourseController.php">Enrolled Courses</a></li>
+                    <li><a href="EnrolledCourses.php">Enrolled Courses</a></li>
                 <?php endif?>
                 <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Student"): ?>
                     <li><a href="#">Certificates</a></li>
@@ -114,7 +113,7 @@ if ($result && mysqli_num_rows($result) > 0) {
             <?php foreach ($courses as $course): ?>
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-5 text-center">
                     <div class="card mb-5 border border-dark-subtle">
-                    <img src="../<?= htmlspecialchars(str_replace('../', '', $course['ImageUrl'])) ?>" alt="Course Image">  
+                    <img src="../<?=htmlspecialchars(str_replace('../', '', $course['ImageUrl']))?>" alt="CourseImage">  
                     <div class="card-body">
                         <h5 class="card-title"><?= htmlspecialchars($course['Title']) ?></h5>
                         <p class="card-text mb-1"><strong>Category:</strong> Programming</p>

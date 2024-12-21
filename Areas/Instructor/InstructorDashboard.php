@@ -35,7 +35,7 @@ include "../../config/database.php";
            <br /><br />  
            <div class="container">  
            <div class="admin-dashboard-header">
-                    <h1>Admin Dashboard</h1>
+                    <h1>Students Dashboard</h1>
                </div>  
                 <div class="row mb-5">                
         </div>
