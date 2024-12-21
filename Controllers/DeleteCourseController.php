@@ -15,7 +15,13 @@ if (isset($_POST['delete'])) {
     // Execute the query
     if ($result) {
         $_SESSION['success'] = "Course deleted successfully.";
-        header("Location: ../Views/AllCourses.php");
+        if(isset($_SESSION['role']) && $_SESSION['role'] === 'Instructor'){
+            header("Location: ../Views/InstructorCourses.php");
+
+        }else if(isset($_SESSION['role']) && $_SESSION['role'] === 'Admin'){
+            header("Location: ../Areas/Admin/Courses.php");
+
+        }
     } else {
         $_SESSION['error'] = "Failed to delete the course. Please try again.";
         header("Location: ../Views/deletecourse.php");

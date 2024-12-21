@@ -8,25 +8,56 @@
     <link rel="stylesheet" href="../assets/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/contact.css">
 </head>
-
+<?php session_start();?>
 <body>
-    <header>
+<header>
         <nav class="navbar">
             <!-- Logo -->
-            <a href="home.php" class="logo">E-Learners</a>
+            <a href="../index.php" class="logo">E-Learners</a>
 
             <!-- Links for Desktop -->
             <ul class="nav-links">
-                <li><a href="#">All Courses</a></li>
-                <li><a href="#">Enrolled Courses</a></li>
-                <li><a href="#">Certificates</a></li>
-                <li><a href="contact.php">Contact Us</a></li>
+                <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Instructor"): ?>
+                    <li><a href="InstructorCourses.php">All Courses</a></li>
+                <?php endif?>
+                <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Student"): ?>
+                    <li><a href="AllCourses.php">All Courses</a></li>
+                <?php endif?>
+                <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Student"): ?>
+                    <li><a href="../Controllers/EnrollCourseController.php">Enrolled Courses</a></li>
+                <?php endif?>
+                <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Student"): ?>
+                    <li><a href="#">Certificates</a></li>
+                <?php endif?>
+                <li><a href="contact.php">Contact Us</a></li>                
+
+
+                <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Admin"):?>
+                    <li class="nav-item dropdown">
+                    <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Content Management
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../Areas/Admin/Courses.php">Courses</a></li>
+                        <li><a class="dropdown-item" href="../Areas/Admin/Users.php">Users</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <?php endif?>
             </ul>
 
             <!-- Auth Buttons -->
             <div class="auth-buttons">
-                <a href="login.php" class="login-btn">Login</a>
-                <a href="register.php" class="register-btn">Register</a>
+                <?php
+                        if(isset($_SESSION['user_id'])):?>
+                            <a href="#" class="login-btn"> <?php echo $_SESSION['username'] ?> </a>
+                            <a href="../Controllers/Logout.php" class="register-btn">Log Out</a>
+                        <?php else:?>
+                            <a href="login.php" class="login-btn">Login</a>
+                            <a href="register.php" class="register-btn">Register</a>
+                        <?php endif
+                ?>
             </div>
 
             <!-- Hamburger Icon -->
@@ -38,8 +69,15 @@
                 <li><a href="#">Enrolled Courses</a></li>
                 <li><a href="#">Certificates</a></li>
                 <li><a href="contact.php">Contact Us</a></li>
-                <li><a href="login.php" class="login-btn">Login</a></li>
-                <li><a href="register.php" class="register-btn">Register</a></li>
+                <?php
+                        if(isset($_SESSION['user_id'])):?>
+                            <li><a href="#" class="login-btn"> <?php echo $_SESSION['username'] ?> </a></li>
+                            <li><a href="../Controllers/Logout.php" class="register-btn">Log Out</a></li>
+                        <?php else:?>
+                            <li><a href="login.php" class="login-btn">Login</a></li>
+                            <li><a href="register.php" class="register-btn">Register</a></li>
+                        <?php endif
+                ?>
             </ul>
         </nav>
     </header>

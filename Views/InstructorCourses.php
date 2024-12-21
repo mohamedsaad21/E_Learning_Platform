@@ -113,13 +113,13 @@ if ($result && mysqli_num_rows($result) > 0) {
             <?php foreach ($courses as $course): ?>
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-5 text-center">
                     <div class="card mb-5 border border-dark-subtle">
-                    <img src="<?=htmlspecialchars($course['ImageUrl']) ?>" alt="Course Image">
+                    <img src="../<?= htmlspecialchars(str_replace('../', '', $course['ImageUrl'])) ?>" alt="CourseImage">  
                     <div class="card-body">
                         <h5 class="card-title"><?= htmlspecialchars($course['Title']) ?></h5>
                         <p class="card-text mb-1"><strong>Category:</strong> Programming</p>
                         <p class="card-text mb-3"><strong>Price:</strong> <?= htmlspecialchars($course['Price']) ?></p>
-                        <a href="course.php?id=<?= urlencode($course['Id']) ?>" class="btn btn-primary">View Details</a></div>
-                        <?php if($_SESSION['role'] === "Admin"):?>
+                        <a href="../Areas/Instructor/InstructorDashboard.php?id=<?=urlencode($course['Id']) ?>" class="btn btn-primary">View Details</a></div>
+                        <?php if(isset($_SESSION['role']) && ($_SESSION['role'] === "Admin" || $_SESSION['role'] == 'Instructor')):?>
                             <a href="updatecourse.php?id=<?= urlencode($course['Id']) ?>" class=" w-25 m-auto mb-1 btn btn-primary">Edit</a>
                             <a href="deletecourse.php?id=<?= urlencode($course['Id']) ?>" class=" w-25 m-auto mb-1 btn btn-primary">Delete</a>
                             <?php endif?>

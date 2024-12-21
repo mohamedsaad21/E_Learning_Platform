@@ -1,8 +1,8 @@
 <?php
 session_start();
 include "../config/database.php";
-$InstructorId = $_SESSION['user_id'];
-$sql = "SELECT * FROM courses INNER JOIN students_courses ON courses.Id = students_courses.CourseId INNER JOIN users ON users.Id = students_courses.StudentId";
+$UserId = $_SESSION['user_id'];
+$sql = "SELECT * FROM courses INNER JOIN students_courses ON courses.Id = students_courses.CourseId INNER JOIN users ON users.Id = students_courses.StudentId WHERE users.Id = $UserId";
 $result = mysqli_query($conn, $sql);
 if ($result && mysqli_num_rows($result) > 0) {
     // Fetch all rows and store them in a session
