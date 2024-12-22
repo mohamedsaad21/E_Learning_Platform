@@ -44,7 +44,7 @@ if (!$categoriesResult) {
 ?>
 <div class="container">
     <div class="form-container">
-        <h2>Edit Course</h2>
+        <h2>Delete Course</h2>
         <?php if (isset($_SESSION['error'])) { ?>
             <div class="alert alert-danger">
                 <p><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></p>

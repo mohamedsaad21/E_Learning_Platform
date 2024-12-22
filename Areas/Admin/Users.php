@@ -1,4 +1,4 @@
- <?php
+<?php
 session_start();
 if ($_SESSION['role'] != "Admin") {
     header("Location: ../../AccessDenied.php");
@@ -23,16 +23,14 @@ if (!$result) {
     <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>            
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" /> 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> 
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../assets/css/AdminUsers.css">
 </head>
 <body>
 <div class="navbar">
     <h2>E-Learners</h2>
     <a href="../../index.php">Home</a>
-    <a href="../../Views/AllCourses.php">All Courses</a>
-    <a href="#">Enrolled Courses</a>
-    <a href="">Certificates</a>
-    <a href="../../Views/Contact.php">Contact Us</a>
     <a href="../../Controllers/Logout.php" class="btn btn-danger">Logout</a>
 </div>
 <br /><br />
@@ -74,15 +72,18 @@ if (!$result) {
                               <a href="DeleteCourseController.php" class="btn btn-danger">
                                    <i class="bi bi-trash-fill"></i> Delete
                               </a>
-                         </td>      
+                         </td>   
                     </tr>
                 <?php endwhile ?>
             </tbody>
         </table>
     </div>
 </div>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/all.min.js"></script>
 </body>
 </html>
+
 <script>
 $(document).ready(function() {
     $('#course_data').DataTable();

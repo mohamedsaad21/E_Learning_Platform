@@ -46,61 +46,52 @@ if ($result && $result->num_rows > 0) {
 
 <body>
 <header>
-    <nav class="navbar">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
         <!-- Logo -->
-        <a href="home.php" class="logo">E-Learners</a>
-
-        <!-- Links for Desktop -->
-        <ul class="nav-links">
-            <li><a href="AllCourses.php">All Courses</a></li>
-            <li><a href="EnrolledCourses.php">Enrolled Courses</a></li>
-            <li><a href="#">Certificates</a></li>
-            <li><a href="Views/contact.php">Contact Us</a></li>
-            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === "Admin"): ?>
-                <li class="nav-item dropdown">
-                    <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Content Management
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../Areas/Admin/Courses.php">Courses</a></li>
-                        <li><a class="dropdown-item" href="../Areas/Admin/Users.php">Users</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
-            <?php endif ?>
-        </ul>
-
-        <!-- Auth Buttons -->
-        <div class="auth-buttons">
-            <?php if (isset($_SESSION['user_id'])): ?>
-                <a href="#" class="login-btn"><?= htmlspecialchars($_SESSION['username']) ?></a>
-                <a href="../Controllers/Logout.php" class="register-btn">Log Out</a>
-            <?php else: ?>
-                <a href="login.php" class="login-btn">Login</a>
-                <a href="register.php" class="register-btn">Register</a>
-            <?php endif ?>
-        </div>
+        <a href="../index.php" class="logo navbar-brand">E-Learners</a>
 
         <!-- Hamburger Icon -->
-        <i class="fa-solid fa-bars menuIcon"></i>
+        <button
+            class="navbar-toggler menuIcon"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarContent"
+            aria-controls="navbarContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <i class="fa-solid fa-bars"></i>
+        </button>
 
-        <!-- Mobile Menu -->
-        <ul class="mobile-menu">
-            <li><a href="AllCourses.php">All Courses</a></li>
-            <li><a href="EnrolledCourses.php">Enrolled Courses</a></li>
-            <li><a href="#">Certificates</a></li>
-            <li><a href="contact.php">Contact Us</a></li>
-            <?php if (isset($_SESSION['user_id'])): ?>
-                <li><a href="#" class="login-btn"><?= htmlspecialchars($_SESSION['username']) ?></a></li>
-                <li><a href="Controllers/Logout.php" class="register-btn">Log Out</a></li>
+        <!-- Navbar Content -->
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <!-- Centered Links -->
+            <ul class="nav-links navbar-nav mx-auto">
+            <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Instructor"): ?>
+                <li class="nav-item"><a class="nav-link" href="InstructorCourses.php">Your Courses</a></li>
+            <?php endif; ?>
+            <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Student"): ?>
+                <li class="nav-item"><a class="nav-link" href="AllCourses.php">All Courses</a></li>
+                <li class="nav-item"><a class="nav-link" href="EnrolledCourses.php">Enrolled Courses</a></li>
+            <?php endif; ?>
+            <li class="nav-item"><a class="nav-link" href="contact.php">Contact Us</a></li>
+            </ul>
+
+            <!-- Auth Buttons -->
+            <div class="auth-buttons d-flex">
+            <?php if(isset($_SESSION['user_id'])): ?>
+                <a href="#" class="login-btn me-2"><?php echo $_SESSION['username']; ?></a>
+                <a href="../Controllers/Logout.php" class="register-btn">Log Out</a>
             <?php else: ?>
-                <li><a href="Views/login.php" class="login-btn">Login</a></li>
-                <li><a href="Views/register.php" class="register-btn">Register</a></li>
-            <?php endif ?>
-        </ul>
+                <a href="login.php" class="login-btn me-2">Login</a>
+                <a href="register.php" class="register-btn">Register</a>
+            <?php endif; ?>
+            </div>
+        </div>
+        </div>
     </nav>
-</header>
+    </header>
 
 <form action="../Controllers/EnrollCourseController.php" method="post">
     <div class="course-details">

@@ -39,16 +39,14 @@ $_SESSION['CourseId'] = $CourseId;
 <div class="navbar">
     <h2>E-Learners</h2>
     <a href="../../index.php">Home</a>
-    <a href="../../Views/AllCourses.php">All Courses</a>
-    <a href="#">Enrolled Courses</a>
-    <a href="">Certificates</a>
+    <a href="../../Views/InstructorCourses.php">Your Courses</a>
     <a href="../../Views/Contact.php">Contact Us</a>
     <a href="../../Controllers/Logout.php" class="btn btn-danger">Logout</a>
 </div>
 <br /><br />
 <div class="container">
     <div class="admin-dashboard-header">
-        <h1>Admin Dashboard</h1>
+        <h1>Instructor Dashboard</h1>
     </div>
     <div class="row mb-5">
         <?php if ($_SESSION['role'] === "Admin"): ?>
