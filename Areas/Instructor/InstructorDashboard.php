@@ -48,7 +48,7 @@ $_SESSION['CourseId'] = $CourseId;
 <br /><br />
 <div class="container">
     <div class="admin-dashboard-header">
-        <h1>Admin Dashboard</h1>
+        <h1>Students Dashboard</h1>
     </div>
     <div class="row mb-5">
         <?php if ($_SESSION['role'] === "Admin"): ?>
@@ -75,14 +75,11 @@ $_SESSION['CourseId'] = $CourseId;
                         <td><?= htmlspecialchars($row["LastName"]) ?></td>
                         <td><?= htmlspecialchars($row["Username"]) ?></td>
                         <td><?= htmlspecialchars($row["Email"]) ?></td>
-                        <td>                                             
-                              <a href="UpdateController.php" class="btn btn-warning">
-                                   <i class="bi bi-pencil-square"></i>  Edit
-                              </a>                                      
-                              <a href="DeleteCourseController.php" class="btn btn-danger">
-                                   <i class="bi bi-trash-fill"></i> Delete
-                              </a>
-                         </td>   
+                        <td>                                                 
+                                <a href="DeleteUserFromCourse.php?id=' .$row['StudentId'] . '" class="btn btn-danger">
+                                        <i class="bi bi-trash-fill"></i> Delete
+                                 </a>
+                         </td> 
                     </tr>
                 <?php endwhile ?>
             </tbody>
