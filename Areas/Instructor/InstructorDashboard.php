@@ -76,9 +76,9 @@ $_SESSION['CourseId'] = $CourseId;
                         <td><?= htmlspecialchars($row["Username"]) ?></td>
                         <td><?= htmlspecialchars($row["Email"]) ?></td>
                         <td>                                                 
-                              <a href="DeleteUserFromCourse.php?id=' .$row['StudentId'] . '" class="btn btn-danger">
-                                   <i class="bi bi-trash-fill"></i> Delete
-                              </a>
+                        <a href="DeleteUserFromCourse.php?id=<?= $row['StudentId'] ?>" class="btn btn-danger">
+                            <i class="bi bi-trash-fill"></i> Delete
+                        </a>
                          </td>    
                     </tr>
                 <?php endwhile ?>

@@ -118,9 +118,9 @@ if ($result && $result->num_rows > 0) {
                 <?= htmlspecialchars($course['Description']) ?>
             </p>
             <button type="submit" class="enroll-btn">Enroll Now</button>
-            <button type="button" class="cart-btn">
-                <i class="fas fa-shopping-cart"></i> Add to Cart
-            </button>
+            <button type="submit" class="cart-btn" formaction="../Controllers/CartController.php">
+          <i class="fas fa-shopping-cart"></i> Add to Cart
+        </button>
         </div>
     </div>
 </form>
