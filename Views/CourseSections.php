@@ -115,9 +115,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                     <div class="card mb-5 border border-dark-subtle">
                     <div class="card-body">
                         <h5 class="card-title"><?= htmlspecialchars($section['Title']) ?></h5>
-                        <?php if(isset($_SESSION['role']) && ($_SESSION['role'] === "Admin" || $_SESSION['role'] == 'Instructor')):?>
-                            <a href="SectionVideos.php?id=<?= urlencode($section['Id']) ?>" class=" w-25 m-auto mb-1 btn btn-primary">Start</a>
-                            <?php endif?>
+                        <a href="SectionVideos.php?id=<?= urlencode($section['Id']) ?>" class=" w-25 m-auto mb-1 btn btn-primary">Start</a>
                     </div>
                 </div>
                 <?php endforeach; ?>

@@ -24,7 +24,7 @@
                     <li><a href="AllCourses.php">All Courses</a></li>
                 <?php endif?>
                 <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Student"): ?>
-                    <li><a href="../Controllers/EnrollCourseController.php">Enrolled Courses</a></li>
+                    <li><a href="../Views/EnrolledCourses.php">Enrolled Courses</a></li>
                 <?php endif?>
                 <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Student"): ?>
                     <li><a href="#">Certificates</a></li>

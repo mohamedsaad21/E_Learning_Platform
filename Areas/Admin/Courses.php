@@ -50,7 +50,7 @@ include "../../config/database.php";
                                     <td>Title</td>  
                                     <td>Instructor</td> 
                                     <td>Category</td> 
-                                    <td></td> 
+                                    <td>Actions</td>
                                </tr>  
                           </thead>  
                           <?php  

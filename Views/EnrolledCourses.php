@@ -2,7 +2,7 @@
 session_start();
 include "../config/database.php";
 $UserId = $_SESSION['user_id'];
-$sql = "SELECT * FROM courses INNER JOIN students_courses ON courses.Id = students_courses.CourseId INNER JOIN users ON users.Id = students_courses.StudentId WHERE users.Id = $UserId";
+$sql = "SELECT courses.* FROM courses INNER JOIN students_courses ON courses.Id = students_courses.CourseId INNER JOIN users ON users.Id = students_courses.StudentId WHERE users.Id = $UserId";
 $result = mysqli_query($conn, $sql);
 if ($result && mysqli_num_rows($result) > 0) {
     // Fetch all rows and store them in a session
@@ -123,9 +123,9 @@ if ($result && mysqli_num_rows($result) > 0) {
                         <h5 class="card-title"><?= htmlspecialchars($course['Title']) ?></h5>
                         <p class="card-text mb-1"><strong>Category:</strong> Programming</p>
                         <p class="card-text mb-3"><strong>Price:</strong> <?= htmlspecialchars($course['Price']) ?></p>
-                        <a href="course.php?id=<?= urlencode($course['Id']) ?>" class="btn btn-primary">View Details</a>
+                        <a href="../Controllers/StudentController.php?id=<?= urlencode($course['Id']) ?>" class="btn btn-primary">View Details</a>
                     </div>
-                        <?php if($_SESSION['role'] === "Admin"):?>
+                        <?php if($_SESSION['role'] === "Instructor"):?>
                             <a href="updatecourse.php?id=<?= urlencode($course['Id']) ?>" class=" w-25 m-auto mb-1 btn btn-primary">Edit</a>
                             <a href="deletecourse.php?id=<?= urlencode($course['Id']) ?>" class=" w-25 m-auto mb-1 btn btn-primary">Delete</a>
                             <?php endif?>

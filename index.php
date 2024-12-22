@@ -13,7 +13,7 @@
     <header>
         <nav class="navbar">
             <!-- Logo -->
-            <a href="home.php" class="logo">E-Learners</a>
+            <a href="index.php" class="logo">E-Learners</a>
 
             <!-- Links for Desktop -->
             <ul class="nav-links">
@@ -24,7 +24,7 @@
                     <li><a href="Views/AllCourses.php">All Courses</a></li>
                 <?php endif?>
                 <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Student"): ?>
-                    <li><a href="Controllers/EnrollCourseController.php">Enrolled Courses</a></li>
+                    <li><a href="Views/EnrolledCourses.php">Enrolled Courses</a></li>
                 <?php endif?>
                 <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Student"): ?>
                     <li><a href="#">Certificates</a></li>
