@@ -118,7 +118,8 @@ if ($result && mysqli_num_rows($result) > 0) {
                         <h5 class="card-title"><?= htmlspecialchars($course['Title']) ?></h5>
                         <p class="card-text mb-1"><strong>Category:</strong> Programming</p>
                         <p class="card-text mb-3"><strong>Price:</strong> <?= htmlspecialchars($course['Price']) ?></p>
-                        <a href="course.php?id=<?= urlencode($course['Id']) ?>" class="btn btn-primary">View Details</a></div>
+                        <a href="../Controllers/StudentController.php?id=<?= urlencode($course['Id']) ?>" class="btn btn-primary">View Details</a>
+                    </div>
                         <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Admin"):?>
                             <a href="updatecourse.php?id=<?= urlencode($course['Id']) ?>" class=" w-25 m-auto mb-1 btn btn-primary">Edit</a>
                             <a href="deletecourse.php?id=<?= urlencode($course['Id']) ?>" class=" w-25 m-auto mb-1 btn btn-primary">Delete</a>

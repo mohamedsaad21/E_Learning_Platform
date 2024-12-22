@@ -4,11 +4,17 @@ include "../config/database.php";
 
 // Check if the 'id' is set in the URL
 if (!isset($_GET['id']) || empty($_GET['id'])) {
-    die("Course ID not specified.");
+    if(!isset($_SESSION['CourseId'])){
+        die("Course ID not specified.");
+    }
+    else{
+        $courseId = intval($_SESSION['CourseId']);
+    }
+}else{
+    $courseId = intval($_GET['id']);
 }
 
 // Sanitize the input to prevent SQL injection
-$courseId = intval($_GET['id']);
 
 // Fetch course details from the database using a prepared statement
 $sql = "SELECT * FROM `courses` WHERE `id` = ?";

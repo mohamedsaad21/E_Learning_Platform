@@ -72,7 +72,9 @@ if (isset($_POST['submit'])) {
 
     if ($result) {
         $_SESSION['success'] = "Course updated successfully.";
-        header("Location: ../Views/AllCourses.php");
+        if($_SESSION['role'] == "Admin"){
+            header("Location: ../Areas/Admin/Courses.php");
+        }
     } else {
         $_SESSION['error'] = "Failed to update course. Please try again.";
         header("Location: ../Views/updatecourse.php?id=$id");
