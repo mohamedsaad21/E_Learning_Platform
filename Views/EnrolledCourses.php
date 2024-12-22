@@ -104,7 +104,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     </header>
 
     <div class="container">
-        <h1 class="text-center">Our Courses</h1>
+        <h1 class="text-center">My Courses</h1>
         <div class="row mb-5">
             <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "Admin"):?>
                 <a class="text-decoration-none" href="../Controllers/AddController.php">

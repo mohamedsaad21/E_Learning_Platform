@@ -1,4 +1,4 @@
-<?php
+ <?php
 session_start();
 if ($_SESSION['role'] != "Instructor") {
     header("Location: ../../AccessDenied.php");
@@ -48,7 +48,7 @@ $_SESSION['CourseId'] = $CourseId;
 <br /><br />
 <div class="container">
     <div class="admin-dashboard-header">
-        <h1>Students Dashboard</h1>
+        <h1>Admin Dashboard</h1>
     </div>
     <div class="row mb-5">
         <?php if ($_SESSION['role'] === "Admin"): ?>
@@ -76,10 +76,10 @@ $_SESSION['CourseId'] = $CourseId;
                         <td><?= htmlspecialchars($row["Username"]) ?></td>
                         <td><?= htmlspecialchars($row["Email"]) ?></td>
                         <td>                                                 
-                                <a href="../../Controllers/DeleteCourseController.php?id=' .$row['StudentId'] . '" class="btn btn-danger">
-                                        <i class="bi bi-trash-fill"></i> Delete
-                                 </a>
-                         </td> 
+                              <a href="DeleteUserFromCourse.php?id=' .$row['StudentId'] . '" class="btn btn-danger">
+                                   <i class="bi bi-trash-fill"></i> Delete
+                              </a>
+                         </td>    
                     </tr>
                 <?php endwhile ?>
             </tbody>

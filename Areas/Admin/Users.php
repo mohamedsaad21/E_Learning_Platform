@@ -1,4 +1,4 @@
-<?php
+ <?php
 session_start();
 if ($_SESSION['role'] != "Admin") {
     header("Location: ../../AccessDenied.php");
@@ -74,7 +74,7 @@ if (!$result) {
                               <a href="DeleteCourseController.php" class="btn btn-danger">
                                    <i class="bi bi-trash-fill"></i> Delete
                               </a>
-                         </td>   
+                         </td>      
                     </tr>
                 <?php endwhile ?>
             </tbody>
