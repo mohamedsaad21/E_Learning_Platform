@@ -108,9 +108,9 @@ $sections = $_SESSION['sections'] ?? [];
                                 <a href="SectionVideos.php?id=<?= urlencode($section['Id']) ?>" class=" w-25 m-auto mb-1 btn btn-primary">Start</a>
                             </div>
                         </div>
-                    <?php endforeach; ?>
                     </div>
-                <?php endif; ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
 
         <!-- <footer class="footer">

@@ -61,6 +61,7 @@ if (isset($_POST['submit'])) {
         }
     }
 
+
     // Update course information
     $query = "UPDATE `courses` 
               SET `Title` = '$title', 
@@ -69,11 +70,47 @@ if (isset($_POST['submit'])) {
                   `Price` = $price
               WHERE `Id` = $id";
     $result = mysqli_query($conn, $query);
+    $lastInsertedId = $id; // Get the auto-incremented ID
+    if (isset($_POST['sections']) && is_array($_POST['sections'])) {
+        foreach ($_POST['sections'] as $sectionIndex => $sectionData) {
+            $sectionTitle = mysqli_real_escape_string($conn, $sectionData['section_title']);
+
+            // Insert Section into courses_sections
+            $insertSectionQuery = "INSERT INTO courses_sections (course_id, Title) VALUES ('$lastInsertedId', '$sectionTitle')";
+            if (!mysqli_query($conn, $insertSectionQuery)) {
+                throw new Exception("Error inserting section: " . mysqli_error($conn));
+            }
+
+            $sectionId = mysqli_insert_id($conn); // Get the inserted section ID
+
+            // Process video uploads for the current section
+            if (!empty($_FILES['sections']['name'][$sectionIndex]['videos']) && is_array($_FILES['sections']['name'][$sectionIndex]['videos'])) {
+                foreach ($_FILES['sections']['name'][$sectionIndex]['videos'] as $videoIndex => $videoName) {
+                    if ($_FILES['sections']['error'][$sectionIndex]['videos'][$videoIndex] === UPLOAD_ERR_OK) {
+                        $videoTmpName = $_FILES['sections']['tmp_name'][$sectionIndex]['videos'][$videoIndex];
+                        $videoPath = '../assets/Videos/' . basename($videoName);
+
+                        if (move_uploaded_file($videoTmpName, $videoPath)) {
+                            $videoTitle = "Video " . ($videoIndex + 1); // Customize video title if needed
+                            $insertVideoQuery = "INSERT INTO sections_videos (section_id, Title, video_url) VALUES ($sectionId, '$videoTitle', '$videoPath')";
+                            if (!mysqli_query($conn, $insertVideoQuery)) {
+                                throw new Exception("Error inserting video: " . mysqli_error($conn));
+                            }
+                        } else {
+                            throw new Exception("Failed to upload video: $videoName");
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     if ($result) {
         $_SESSION['success'] = "Course updated successfully.";
-        if($_SESSION['role'] == "Admin"){
+        if ($_SESSION['role'] == "Admin") {
             header("Location: ../Areas/Admin/Courses.php");
+        } elseif ($_SESSION['role'] == "Instructor") {
+            header("Location: ../Views/CourseSections.php?id=" . urlencode($id));
         }
     } else {
         $_SESSION['error'] = "Failed to update course. Please try again.";
@@ -83,4 +120,3 @@ if (isset($_POST['submit'])) {
     $_SESSION['error'] = "Invalid request.";
     header("Location: ../Views/AllCourses.php");
 }
-?>
