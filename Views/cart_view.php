@@ -1,10 +1,11 @@
 <?php
+session_start();
 // Database connection
 include "../config/database.php";
 
 // Fetch data with JOIN to get course names and student names
-$query = "
-    SELECT 
+$StudentId = $_SESSION['user_id'];
+$query = "SELECT 
         my_cart.CourseId,
         my_cart.StudentId,
         courses.Title AS CourseName,
@@ -15,6 +16,7 @@ $query = "
         courses ON my_cart.CourseId = courses.Id
     JOIN 
         users ON my_cart.StudentId = users.Id
+    WHERE users.Id = $StudentId
 ";
 $result = mysqli_query($conn, $query);
 
