@@ -94,56 +94,54 @@ if ($result && mysqli_num_rows($result) > 0) {
     </header>
 
     <div class="container">
-        <h1 class="text-center my-3 text-primary">Our Videos</h1>
-        <div class="row">
-            <?php
-            $videos = $_SESSION['videos'] ?? [];
-            if (!empty($videos)):
-                foreach ($videos as $video): ?>
-                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                        <div class="card">
-                            <video width="100%" controls>
-                                <source src="../<?= htmlspecialchars(str_replace('../', '', $video['video_url'])) ?>" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <?= htmlspecialchars($video['Title']) ?>
+    <h1 class="text-center my-3 text-primary">Our Videos</h1>
+    <div class="row">
+        <?php
+        $videos = $_SESSION['videos'] ?? [];
+        if (!empty($videos)):
+            foreach ($videos as $video): ?>
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="card">
+                        <video width="100%" controls>
+                            <source src="../<?= htmlspecialchars(str_replace('../', '', $video['video_url'])) ?>" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <!-- Assign unique ID to each button and modal -->
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal<?= $video['Id'] ?>">
+                                    <?= htmlspecialchars($video['Title']) ?>
+                                </button>
 
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered square-modal">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                                        <?= htmlspecialchars($video['Title']) ?>
-                                                    </h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <video controls>
-                                                        <source src="../<?= htmlspecialchars(str_replace('../', '', $video['video_url'])) ?>" type="video/mp4">
-                                                        Your browser does not support the video tag.
-                                                    </video>
-                                                </div>
+                                <!-- Modal -->
+                                <div class="modal fade" id="modal<?= $video['Id'] ?>" tabindex="-1" aria-labelledby="modalLabel<?= $video['Id'] ?>" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="modalLabel<?= $video['Id'] ?>">
+                                                    <?= htmlspecialchars($video['Title']) ?>
+                                                </h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <video width="100%" controls>
+                                                    <source src="../<?= htmlspecialchars(str_replace('../', '', $video['video_url'])) ?>" type="video/mp4">
+                                                    Your browser does not support the video tag.
+                                                </video>
                                             </div>
                                         </div>
                                     </div>
-
-
-                                </h5>
-                            </div>
+                                </div>
+                            </h5>
                         </div>
                     </div>
-                <?php endforeach;
-            else: ?>
-                <p class="text-center">No videos available for this section.</p>
-            <?php endif; ?>
-        </div>
+                </div>
+            <?php endforeach;
+        else: ?>
+            <p class="text-center">No videos available for this section.</p>
+        <?php endif; ?>
     </div>
+</div>
 
 
 
