@@ -23,6 +23,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     <link rel="stylesheet" href="../assets/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/allsections.css">
+    <link rel="stylesheet" href="../assets/css/allvideos.css">
 </head>
 <?php
 $sections = $_SESSION['sections'] ?? [];
@@ -81,12 +82,19 @@ $sections = $_SESSION['sections'] ?? [];
 
 
     <div class="container">
-        <h1 class="text-center">Our Courses</h1>
+        <h1 class="text-center my-3 text-primary">Sections</h1>
         <div class="row mb-5">
             <?php if (isset($_SESSION['role']) && $_SESSION['role'] === "Instructor"): ?>
-                <a class="text-decoration-none" href="../Controllers/AddController.php">
+
+
+
+                <a href="updatecourse.php?id=<?= urlencode($courseId) ?>" class=" w-25 m-auto mb-1 btn btn-primary">
                     <i class="bi bi-plus-circle"></i> Add New Section
                 </a>
+
+                <!-- 
+                <a class="text-decoration-none" href="../Views/updatecourse.php?id = $  courseId">
+                </a> -->
             <?php endif ?>
         </div>
         <div class="row">
@@ -117,6 +125,7 @@ $sections = $_SESSION['sections'] ?? [];
         <!-- Bootstrap JS -->
         <script src="../assets/js/bootstrap.bundle.min.js"></script>
         <script src="../assets/js/all.min.js"></script>
+
 </body>
 
 </html>

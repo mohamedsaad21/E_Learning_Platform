@@ -56,6 +56,43 @@ header {
   border: none;
 }
 
+
+
+
+.card video {
+  height: 200px;
+}
+
+.square-modal {
+  width: 80%;
+  /* Adjust width as needed */
+  max-width: 800px;
+  /* Optional: Limit max width */
+  height: 50vw;
+  /* Set height equal to width */
+  max-height: 500px;
+  /* Optional: Limit max height */
+}
+
+.square-modal .modal-content {
+  height: 80%;
+  /* Fill the height of the square container */
+}
+
+.square-modal .modal-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+video {
+  min-width: 100%;
+  min-height: 100%;
+}
+
+
+
+
 @media (max-width: 767px) {
   .nav-links {
     gap: 10px;

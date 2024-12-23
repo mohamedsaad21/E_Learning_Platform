@@ -107,7 +107,34 @@ if ($result && mysqli_num_rows($result) > 0) {
                                 Your browser does not support the video tag.
                             </video>
                             <div class="card-body">
-                                <h5 class="card-title"><?= htmlspecialchars($video['Title']) ?></h5>
+                                <h5 class="card-title">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <?= htmlspecialchars($video['Title']) ?>
+
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered square-modal">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                                        <?= htmlspecialchars($video['Title']) ?>
+                                                    </h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <video controls>
+                                                        <source src="../<?= htmlspecialchars(str_replace('../', '', $video['video_url'])) ?>" type="video/mp4">
+                                                        Your browser does not support the video tag.
+                                                    </video>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </h5>
                             </div>
                         </div>
                     </div>
@@ -117,7 +144,18 @@ if ($result && mysqli_num_rows($result) > 0) {
             <?php endif; ?>
         </div>
     </div>
+
+
+
+
+
+
+
     <!-- video modal -->
+    <!-- Button trigger modal -->
+
+
+
 
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/all.min.js"></script>

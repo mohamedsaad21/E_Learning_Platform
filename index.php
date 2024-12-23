@@ -78,7 +78,20 @@
         <section class="hero">
             <h1>Welcome to <span class="responsive-E-learning"> E-Learners</span></h1>
             <p>Explore a variety of online courses and enhance your skills from the comfort of your home.</p>
-            <button class="explore-btn">Explore Courses</button>
+
+
+
+
+
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === "Instructor"): ?>
+                <a class="explore-btn btn btn-primary" href="Views/InstructorCourses.php">Explore Courses</a>
+            <?php endif; ?>
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === "Student"): ?>
+                <a class="explore-btn btn btn-primary" href="Views/AllCourses.php">Explore Courses</a>
+            <?php endif; ?>
+
+
+
         </section>
 
         <section class="features">
