@@ -29,7 +29,7 @@ if ($result && $result->num_rows > 0) {
     die("Course not found.");
 }
 ?>
-<?php $_SESSION['CourseId'] = $courseId?>
+<?php $_SESSION['CourseId'] = $courseId ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -119,7 +119,6 @@ if ($result && $result->num_rows > 0) {
     <footer class="footer">
         <div class="container">
             <div class="footer-content d-flex justify-content-evenly">
-                <span><b>E-Learners</b></span>
                 <span>&copy; 2024 E-Learners. All rights reserved.</span>
             </div>
         </div>

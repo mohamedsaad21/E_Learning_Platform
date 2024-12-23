@@ -115,7 +115,6 @@ $courses = $_SESSION['courses'] ?? [];
     <footer class="footer">
         <div class="container">
             <div class="footer-content d-flex justify-content-evenly">
-                <span><b>E-Learners</b></span>
                 <span>&copy; 2024 E-Learners. All rights reserved.</span>
             </div>
         </div>

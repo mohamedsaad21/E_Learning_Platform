@@ -81,20 +81,13 @@ $sections = $_SESSION['sections'] ?? [];
     </header>
 
 
-    <div class="container">
+    <div class="container FullContainer">
         <h1 class="text-center my-3 text-primary">Sections</h1>
         <div class="row mb-5">
             <?php if (isset($_SESSION['role']) && $_SESSION['role'] === "Instructor"): ?>
-
-
-
                 <a href="updatecourse.php?id=<?= urlencode($courseId) ?>" class=" w-25 m-auto mb-1 btn btn-primary">
                     <i class="bi bi-plus-circle"></i> Add New Section
                 </a>
-
-                <!-- 
-                <a class="text-decoration-none" href="../Views/updatecourse.php?id = $  courseId">
-                </a> -->
             <?php endif ?>
         </div>
         <div class="row">
@@ -112,19 +105,18 @@ $sections = $_SESSION['sections'] ?? [];
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
-
-        <!-- <footer class="footer">
-        <div class="container">
+    </div>
+    <footer class="footer">
+        <div class="container-fluid">
             <div class="footer-content d-flex justify-content-evenly">
-                <span><b>E-Learners</b></span>
                 <span>&copy; 2024 E-Learners. All rights reserved.</span>
             </div>
         </div>
-    </footer> -->
+    </footer>
 
-        <!-- Bootstrap JS -->
-        <script src="../assets/js/bootstrap.bundle.min.js"></script>
-        <script src="../assets/js/all.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/all.min.js"></script>
 
 </body>
 

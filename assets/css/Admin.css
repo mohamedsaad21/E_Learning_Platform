@@ -2,9 +2,10 @@
 
 
 body {
-  display: flex;
+  /* display: flex; */
   margin: 0;
-  font-family: Arial, sans-serif;
+  padding: 0;
+  font-family: "Parkinsans", sans-serif;
   background-color: #f3f4f6;
 }
 
@@ -12,60 +13,71 @@ body {
   text-align: center;
   font-size: 36px;
   font-weight: bold;
-  color: #333; /* Dark gray for text */
+  color: #333;
   text-transform: uppercase;
   letter-spacing: 2px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Subtle shadow effect */
   margin: 20px 0 40px;
 }
 
 
+header {
+  background-color: #007bff;
+  color: #fff;
+}
+
 .navbar {
-  width: 250px;
-  height: 100vh;
-  background-color: #1e293b;
-  color: white;
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 20px;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+  padding: 0.5rem 2rem;
 }
 
-.navbar h2 {
-  color: #ffc107;
-  font-size: 24px;
-  margin-bottom: 30px;
-}
-
-.navbar a {
-  color: #cbd5e1;
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff;
   text-decoration: none;
-  font-size: 18px;
-  margin: 10px 0;
-  display: block;
-  width: 100%;
-  text-align: center;
-  padding: 10px 20px;
-  transition: background-color 0.3s ease;
 }
 
-.navbar .btn{
-  bottom: 0;
+.nav-links {
+  display: flex;
+  gap: 2rem;
 }
 
-.navbar a:hover {
-  background-color: #374151;
-  color: #ffffff;
+.nav-links .nav-link {
+  color: #fff;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
-.container {
-  margin-left: 270px;
-  padding: 20px;
+.nav-links .nav-link:hover {
+  background-color: #fff;
+  color: #007bff;
 }
+
+
+.auth-buttons .login-btn,
+.auth-buttons .register-btn {
+  background-color: #fff;
+  color: #007bff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.auth-buttons .login-btn:hover,
+.auth-buttons .register-btn:hover {
+  background-color: #0056b3;
+  color: #fff;
+}
+
+.menuIcon {
+  font-size: 1.5rem;
+  color: #fff;
+  border: none;
+}
+
 
 /* Table Styling */
 .table-responsive {
@@ -77,7 +89,6 @@ body {
 }
 
 table {
-  width: 100%;
   border-collapse: collapse;
 }
 
@@ -117,7 +128,7 @@ table td {
   border-radius: 8px;
   color: white;
   text-decoration: none;
-  transition:all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .btn-warning {
@@ -137,4 +148,14 @@ table td {
 
 .btn-danger:hover {
   background-color: #e60000;
+}
+
+@media (max-width:992px) {
+  .nav-links {
+    gap: 10px;
+  }
+
+  .responsiveTableWidth {
+    width: 100% !important;
+  }
 }

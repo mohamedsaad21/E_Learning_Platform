@@ -18,7 +18,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <!-- Logo -->
-                <a href="index.php" class="logo navbar-brand">E-Learners</a>
+                <a href="index.php" class="logo">E-Learners</a>
 
                 <!-- Hamburger Icon -->
                 <button
@@ -42,7 +42,7 @@
                         <?php if (isset($_SESSION['role']) && $_SESSION['role'] === "Student"): ?>
                             <li class="nav-item"><a class="nav-link" href="Views/AllCourses.php">All Courses</a></li>
                             <li class="nav-item"><a class="nav-link" href="Views/EnrolledCourses.php">Enrolled Courses</a></li>
-                            <li class="nav-item"><a class="nav-link" href="cart_view.php">Go to Cart</a></li>
+                            <li class="nav-item"><a class="nav-link" href="Views/cart_view.php">Go to Cart</a></li>
 
                         <?php endif; ?>
                         <li class="nav-item"><a class="nav-link" href="Views/contact.php">Contact Us</a></li>
@@ -114,7 +114,7 @@
 
         <section class="call-to-action">
             <h2>Ready to Get Started?</h2>
-            <a href="login.php" class="cta-btn">Join Now</a>
+            <a href="Views/login.php" class="cta-btn">Join Now</a>
         </section>
     </main>
 
