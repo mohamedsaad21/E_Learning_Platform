@@ -88,10 +88,19 @@ function sendemail_verify($name, $email, $verify_token) {
 
         $verify_token = md5(rand());
 
-        $check_email_query = "SELECT email FROM users WHERE email = '$email'";
+        $check_email_query = "SELECT Email FROM users WHERE Email = '$email'";
         $check_email_query_run = mysqli_query($conn, $check_email_query);
         if(mysqli_num_rows($check_email_query_run) > 0){
-            header("Location: ../Views/register.php?error=Email Already Exists");
+            $_SESSION['error'] = "Email Already Exists";
+            $_SESSION['firstname'] = $firstname;
+            $_SESSION['lastname'] = $lastname;
+            $_SESSION['username'] = $username;
+            $_SESSION['email'] = $email;
+            $_SESSION['password'] = $password;
+            $_SESSION['confirmPassword'] = $confirmPassword;
+            $_SESSION['rule'] = $MyRole;
+            header("Location: ../Views/register.php");
+            exit();
         }
 
         if($password === $confirmPassword){
@@ -105,7 +114,8 @@ function sendemail_verify($name, $email, $verify_token) {
                 $query_run = mysqli_query($conn, $query); 
                 if(!$query_run){
                     sendemail_verify("$firstname", "$email", "$verify_token");
-                    header("Location: ../Views/register.php?error=Can't register");
+                    $_SESSION['error'] = "Can't register";
+                    header("Location: ../Views/register.php");
                 }              
                 header("Location:../index.php");
             }else if($MyRole === 'instructor'){
@@ -117,12 +127,21 @@ function sendemail_verify($name, $email, $verify_token) {
                 VALUES ('$firstname','$lastname','$username','$email','$password', '$verify_token',  '$role_id')";
                 $query_run = mysqli_query($conn, $query);
                 if(!$query_run){
-                    header("Location: ../Views/register.php?error=Can't register");
+                    $_SESSION['error'] = "Can't register";
+                    header("Location: ../Views/register.php");
 
                 }        
                 header("Location:../index.php");
             }else{
-                header("Location: ../Views/register.php?error=Choose Student or Instructor");
+                $_SESSION['error'] = "Choose Student or Instructor";
+                $_SESSION['firstname'] = $firstname;
+                $_SESSION['lastname'] = $lastname;
+                $_SESSION['username'] = $username;
+                $_SESSION['email'] = $email;
+                $_SESSION['password'] = $password;
+                $_SESSION['confirmPassword'] = $confirmPassword;
+                $_SESSION['rule'] = $MyRole;
+                header("Location: ../Views/register.php");
             }
         }else{
             $_SESSION['error'] = "Passwords do not match";

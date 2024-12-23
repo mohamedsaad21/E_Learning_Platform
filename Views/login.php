@@ -16,23 +16,17 @@
         <form action="../Controllers/LoginController.php" method="post" class="form" id="loginForm">
           <h2 class="formType">Login</h2>
           <?php if(isset($_SESSION['error'])){ ?>
-            <div class="alert alert-danger" role="alert">
-              <p class="error"><?php echo $_SESSION['error'] ?></p>
-            </div>
-          <?php } ?>
-          <!-- <div class="typeContainer">
-            <input type="radio" name="rule" class="userType" id="student" value="student">
-            <label for="student">Student</label>
-            <input type="radio" name="rule" class="userType" id="instructor" value="instructor">
-            <label for="instructor">Instructor</label>
-          </div> -->
+          <div class="alert alert-danger" role="alert">
+            <p class="error"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
+          </div>
+        <?php } ?>
           <input type="email" id="loginEmail" name="email" required placeholder="Enter Email" value="<?php 
-          if(isset($_SESSION['email'])) echo $_SESSION['email'];
-          unset($_SESSION['email']); 
+          if(isset($_SESSION['Email']))echo $_SESSION['Email'];
+          unset($_SESSION['Email']);
           ?>">
           <input type="password" id="loginPassword" name="password" required minlength="8" placeholder="Enter Password" value="<?php 
           if(isset($_SESSION['password'])) echo $_SESSION['password'];
-          unset($_SESSION['password']); 
+          unset($_SESSION['password']);
           ?>">
           <input type="submit" value="Login" name="login">
           <p>Don't have an account? <a href="register.php">Register Now</a></p>

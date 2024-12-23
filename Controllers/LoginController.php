@@ -13,10 +13,11 @@
     $password = validate($_POST['password']);
 
     if(empty($email)){
-        header("Location: ../Views/login.php?error=Email is required");
-        exit();
+        $_SESSION['error'] = "Email is required";
+        header("Location: ../Views/login.php");
     }else if(empty($password)){
-        header("Location: ../Views/login.php?error=Password is required");
+        $_SESSION['error'] = "Password is required";
+        header("Location: ../Views/login.php");
     }
 
     $sql = "SELECT *, role_name FROM users INNER JOIN roles ON roles.role_id = users.role_id WHERE Email = '$email' AND Password = '$password'";
@@ -32,11 +33,13 @@
             $_SESSION['Name'] = $row['firstname'] . " " . $row['lastname'];
             header("Location: ../index.php");
         }else{
-            header("Location: ../Views/login.php?error=Incorrect userName or Password");
-            exit();
+            $_SESSION['Email'] = $email;
+            $_SESSION['error'] = "Incorrect Email or Password";
+            header("Location: ../Views/login.php");
         }
     }else{
-        header("Location: ../Views/login.php?error=Incorrect userName or Password");
-        exit();
+        $_SESSION['Email'] = $email;
+        $_SESSION['error'] = "Incorrect Email or Password";
+        header("Location: ../Views/login.php");
     }
 ?>
