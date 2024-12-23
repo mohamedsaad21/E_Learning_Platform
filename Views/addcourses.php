@@ -27,32 +27,40 @@ if (!$result) {
             <?php if (isset($_SESSION['error'])) { ?>
                 <div class="alert alert-danger" role="alert">
                     <p class="error"><?php echo $_SESSION['error'];
-                                        unset($_SESSION['error']); ?></p>
+                    unset($_SESSION['error']); ?></p>
                 </div>
             <?php } ?>
             <form action="../Controllers/AddController.php" class="form" method="post" id="AddForm" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="Name">Name</label>
                     <input id="Name" name="Name" class="form-control" placeholder="Name" value="<?php
-                                                                                                if (isset($_SESSION['Name'])) echo htmlspecialchars($_SESSION['Name']);
-                                                                                                unset($_SESSION['Name']);
-                                                                                                ?>">
+                        if (isset($_SESSION['Name'])) echo htmlspecialchars($_SESSION['Name']);
+                        unset($_SESSION['Name']);
+                        ?>">
                     <span class="text-danger" data-validation-for="Name"></span>
                 </div>
+
+
+
                 <div class="form-group">
                     <label for="Price">Price</label>
                     <input type="number" id="Price" name="Price" class="form-control" placeholder="Price" value="<?php
-                                                                                                                    if (isset($_SESSION['Price'])) echo htmlspecialchars($_SESSION['Price']);
-                                                                                                                    unset($_SESSION['Price']);
-                                                                                                                    ?>">
+                        if (isset($_SESSION['Price'])) echo htmlspecialchars($_SESSION['Price']);
+                        unset($_SESSION['Price']);
+                        ?>">
                     <span class="text-danger" data-validation-for="Price"></span>
                 </div>
+
+
+
+
+                
                 <div class="form-group">
                     <label for="Descriptions">Description</label>
                     <textarea id="Descriptions" name="Descriptions" class="form-control" placeholder="Description" value="<?php
-                                                                                                                            if (isset($_SESSION['Descriptions'])) echo htmlspecialchars($_SESSION['Descriptions']);
-                                                                                                                            unset($_SESSION['Descriptions']);
-                                                                                                                            ?>"></textarea>
+                        if (isset($_SESSION['Descriptions'])) echo htmlspecialchars($_SESSION['Descriptions']);
+                        unset($_SESSION['Descriptions']);
+                        ?>"></textarea>
                     <span class="text-danger" data-validation-for="Descriptions"></span>
                 </div>
                 <div class="form-group">
@@ -71,9 +79,9 @@ if (!$result) {
                 <div class="form-group">
                     <label for="CreateDate">Create Date</label>
                     <input type="date" id="CreateDate" name="CreateDate" class="form-control" placeholder="Create Date" value="<?php
-                                                                                                                                if (isset($_SESSION['CreateDate'])) echo htmlspecialchars($_SESSION['CreateDate']);
-                                                                                                                                unset($_SESSION['CreateDate']);
-                                                                                                                                ?>">
+                        if (isset($_SESSION['CreateDate'])) echo htmlspecialchars($_SESSION['CreateDate']);
+                        unset($_SESSION['CreateDate']);
+                        ?>">
                     <span class="text-danger" data-validation-for="CreateDate"></span>
                 </div>
                 <div class="form-group">
@@ -128,9 +136,9 @@ if (!$result) {
 
                     <label>Section Description:</label>
                         <textarea id="Descriptions" name="Descriptions" class="form-control" placeholder="Description" value="<?php
-                                                                                                                                if (isset($_SESSION['Descriptions'])) echo htmlspecialchars($_SESSION['Descriptions']);
-                                                                                                                                unset($_SESSION['Descriptions']);
-                                                                                                                                ?>"></textarea><br>
+                            if (isset($_SESSION['Descriptions'])) echo htmlspecialchars($_SESSION['Descriptions']);
+                            unset($_SESSION['Descriptions']);
+                            ?>"></textarea><br>
 
                     <label>Videos:</label>
                     <input type="file" name="sections[${i}][videos][]" id="videos_${i}" min="1" max="10" accept="video/*" multiple required>
@@ -140,7 +148,6 @@ if (!$result) {
             }
         }
 
-        //######################################
 
         tinymce.init({
             selector: 'textarea',

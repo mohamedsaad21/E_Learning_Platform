@@ -4,7 +4,10 @@ include "../config/database.php";
 if (isset($_SESSION['user_id'])) {
     $InstructorId = $_SESSION['user_id'];
 }
-$sql = "SELECT * FROM Courses";
+$sql = "SELECT courses.Id, courses.Title, courses.Price, courses.ImageUrl, categories.Name, CONCAT(users.FirstName, ' ', users.LastName) AS InstructorName 
+        FROM courses 
+        INNER JOIN categories ON categories.Id = courses.CategoryId 
+        INNER JOIN users ON users.Id = courses.InstructorId";
 $result = mysqli_query($conn, $sql);
 if ($result && mysqli_num_rows($result) > 0) {
     // Fetch all rows and store them in a session
@@ -98,8 +101,9 @@ $courses = $_SESSION['courses'] ?? [];
                             <img src="../<?= htmlspecialchars(str_replace('../', '', $course['ImageUrl'])) ?>" alt="CourseImage">
                             <div class="card-body">
                                 <h5 class="card-title"><?= htmlspecialchars($course['Title']) ?></h5>
-                                <p class="card-text mb-1"><strong>Category:</strong> Programming</p>
+                                <p class="card-text mb-1"><strong>Category:</strong><?php echo $course['Name']?></p>
                                 <p class="card-text mb-3"><strong>Price:</strong> <?= htmlspecialchars($course['Price']) ?></p>
+                                <p class="card-text mb-3"><strong>Instructor:</strong> <?= htmlspecialchars($course['InstructorName']) ?></p>
                                 <a href="../Controllers/StudentController.php?id=<?= urlencode($course['Id']) ?>" class="btn btn-primary">View Details</a>
                             </div>
                             <?php if (isset($_SESSION['role']) && $_SESSION['role'] === "Admin"): ?>

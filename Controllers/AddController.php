@@ -42,6 +42,15 @@ if (isset($_POST['submit'])) {
         header("Location: ../Views/addcourses.php");
         exit();
     }
+    if($price <= 0) {
+        $_SESSION['error'] = "Enter Valid Price.";
+        $_SESSION['Name'] = $title;
+        $_SESSION['Descriptions'] = $description;
+        $_SESSION['CategoryId'] = $categoryId;
+        $_SESSION['Price'] = $price;
+        header("Location: ../Views/addcourses.php");
+        exit();
+    }
     $checkCategoryQuery = "SELECT Id FROM categories WHERE Id = $categoryId";
     $checkResult = mysqli_query($conn, $checkCategoryQuery);
 

@@ -53,15 +53,15 @@ if (!$result) {
                     <!-- Centered Links -->
                     <ul class="nav-links navbar-nav mx-auto">
                         <?php if (isset($_SESSION['role']) && $_SESSION['role'] === "Instructor"): ?>
-                            <li class="nav-item"><a class="nav-link" href="Views/InstructorCourses.php">Your Courses</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../../Views/InstructorCourses.php">Your Courses</a></li>
                         <?php endif; ?>
                         <?php if (isset($_SESSION['role']) && $_SESSION['role'] === "Student"): ?>
-                            <li class="nav-item"><a class="nav-link" href="Views/AllCourses.php">All Courses</a></li>
-                            <li class="nav-item"><a class="nav-link" href="Views/EnrolledCourses.php">Enrolled Courses</a></li>
-                            <li class="nav-item"><a class="nav-link" href="cart_view.php">Go to Cart</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../../Views/AllCourses.php">All Courses</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../../Views/EnrolledCourses.php">Enrolled Courses</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../../cart_view.php">Go to Cart</a></li>
 
                         <?php endif; ?>
-                        <li class="nav-item"><a class="nav-link" href="Views/contact.php">Contact Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../../Views/contact.php">Contact Us</a></li>
                         <?php if (isset($_SESSION['role']) && $_SESSION['role'] === "Admin"): ?>
                             <li class="nav-item dropdown">
                                 <a class="dropdown-toggle nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -79,10 +79,10 @@ if (!$result) {
                     <div class="auth-buttons d-flex">
                         <?php if (isset($_SESSION['user_id'])): ?>
                             <a href="#" class="login-btn me-2"><?php echo $_SESSION['username']; ?></a>
-                            <a href="Controllers/Logout.php" class="register-btn">Log Out</a>
+                            <a href="../../Controllers/Logout.php" class="register-btn">Log Out</a>
                         <?php else: ?>
-                            <a href="Views/login.php" class="login-btn me-2">Login</a>
-                            <a href="Views/register.php" class="register-btn">Register</a>
+                            <a href="../../Views/login.php" class="login-btn me-2">Login</a>
+                            <a href="../../Views/register.php" class="register-btn">Register</a>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -115,10 +115,13 @@ if (!$result) {
                             <td><?= htmlspecialchars($row["Username"]) ?></td>
                             <td><?= htmlspecialchars($row["Email"]) ?></td>
                             <td><?= htmlspecialchars($row["role_name"]) ?></td>
+                            
                             <td>
+                            <?php if ($row['role_name'] !== "Admin"): ?>
                                 <a href="DeleteUser.php?id=<?= $row['Id'] ?>" class="btn btn-danger">
                                     <i class="bi bi-trash-fill"></i> Delete
                                 </a>
+                                <?php endif; ?>
                             </td>
                         </tr>
                     <?php endwhile ?>

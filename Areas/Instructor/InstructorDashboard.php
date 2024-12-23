@@ -34,7 +34,6 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="../../assets/css/all.min.css">
         <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-
         <link rel="stylesheet" href="../../assets/css/Admin.css">
     </head>
 
@@ -73,15 +72,15 @@
                                 <li class="nav-item"><a class="nav-link" href="../../cart_view.php">Go to Cart</a></li>
 
                             <?php endif; ?>
-                            <li class="nav-item"><a class="nav-link" href="Views/contact.php">Contact Us</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../../Views/contact.php">Contact Us</a></li>
                             <?php if (isset($_SESSION['role']) && $_SESSION['role'] === "Admin"): ?>
                                 <li class="nav-item dropdown">
                                     <a class="dropdown-toggle nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Content Management
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="Courses.php">Courses</a></li>
-                                        <li><a class="dropdown-item" href="Users.php">Users</a></li>
+                                        <li><a class="dropdown-item" href="Admin/Courses.php">Courses</a></li>
+                                        <li><a class="dropdown-item" href="Admin/Users.php">Users</a></li>
                                     </ul>
                                 </li>
                             <?php endif ?>

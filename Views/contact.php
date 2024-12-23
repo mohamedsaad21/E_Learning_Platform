@@ -52,8 +52,8 @@
                                     Content Management
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="Areas/Admin/Courses.php">Courses</a></li>
-                                    <li><a class="dropdown-item" href="Areas/Admin/Users.php">Users</a></li>
+                                    <li><a class="dropdown-item" href="../Areas/Admin/Courses.php">Courses</a></li>
+                                    <li><a class="dropdown-item" href="../Areas/Admin/Users.php">Users</a></li>
                                 </ul>
                             </li>
                         <?php endif ?>

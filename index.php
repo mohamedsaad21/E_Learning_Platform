@@ -112,10 +112,17 @@
             </div>
         </section>
 
-        <section class="call-to-action">
-            <h2>Ready to Get Started?</h2>
-            <a href="Views/login.php" class="cta-btn">Join Now</a>
-        </section>
+        <?php if (!isset($_SESSION['user_id'])): ?>
+            <section class="call-to-action">
+                <h2>Ready to Get Started?</h2>
+                <a href="Views/login.php" class="cta-btn">Join Now</a>
+            </section>
+        <?php else: ?>
+            <section class="call-to-action opacity-0">
+                <h2>Ready to Get Started?</h2>
+                <a href="Views/login.php" class="cta-btn">Join Now</a>
+            </section>
+        <?php endif;?>
     </main>
 
     <footer class="footer">
