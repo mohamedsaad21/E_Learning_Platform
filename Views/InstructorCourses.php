@@ -2,7 +2,7 @@
 session_start();
 include "../config/database.php";
 $Instructor_id = $_SESSION['user_id'];
-$sql = "SELECT * FROM Courses WHERE InstructorId = $Instructor_id";
+$sql = "SELECT * FROM Courses INNER JOIN categories ON categories.Id = courses.CategoryId WHERE InstructorId = $Instructor_id";
 $result = mysqli_query($conn, $sql);
 if ($result && mysqli_num_rows($result) > 0) {
     // Fetch all rows and store them in a session
@@ -97,7 +97,7 @@ $courses = $_SESSION['courses'] ?? [];
                             <img src="../<?= htmlspecialchars(str_replace('../', '', $course['ImageUrl'])) ?>" alt="CourseImage">
                             <div class="card-body">
                                 <h5 class="card-title"><?= htmlspecialchars($course['Title']) ?></h5>
-                                <p class="card-text mb-1"><strong>Category:</strong> Programming</p>
+                                <p class="card-text mb-1"><strong>Category:</strong> <?php echo $course['Name'] ?></p>
                                 <p class="card-text mb-3"><strong>Price:</strong> <?= htmlspecialchars($course['Price']) ?></p>
                                 <a href="../Areas/Instructor/InstructorDashboard.php?id=<?= urlencode($course['Id']) ?>" class="btn btn-primary">View Details</a>
                             </div>
