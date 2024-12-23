@@ -40,6 +40,7 @@ $_SESSION['CourseId'] = $CourseId;
     <h2>E-Learners</h2>
     <a href="../../index.php">Home</a>
     <a href="../../Views/InstructorCourses.php">Your Courses</a>
+    <a href="../../Views/CourseSections.php?id=<?= urlencode($CourseId) ?>">Watch Course</a>
     <a href="../../Views/Contact.php">Contact Us</a>
     <a href="../../Controllers/Logout.php" class="btn btn-danger">Logout</a>
 </div>
