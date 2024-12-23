@@ -38,13 +38,6 @@ if (!$result) {
     <div class="admin-dashboard-header">
         <h1>Admin Dashboard</h1>
     </div>
-    <div class="row mb-5">
-        <?php if ($_SESSION['role'] === "Admin"): ?>
-            <a class="text-decoration-none" href="../../Views/addcourses.php">
-                <i class="bi bi-plus-circle"></i> Add New Course
-            </a>
-        <?php endif ?>
-    </div>
     <div class="table-responsive">
         <table id="course_data" class="table table-striped table-bordered">
             <thead>
@@ -65,14 +58,11 @@ if (!$result) {
                         <td><?= htmlspecialchars($row["Username"]) ?></td>
                         <td><?= htmlspecialchars($row["Email"]) ?></td>
                         <td><?= htmlspecialchars($row["role_name"]) ?></td>
-                        <td>                                             
-                              <a href="UpdateController.php" class="btn btn-warning">
-                                   <i class="bi bi-pencil-square"></i>  Edit
-                              </a>                                      
-                              <a href="DeleteCourseController.php" class="btn btn-danger">
-                                   <i class="bi bi-trash-fill"></i> Delete
-                              </a>
-                         </td>   
+                        <td>
+                            <a href="DeleteUser.php?id=<?= $row['Id'] ?>" class="btn btn-danger">
+                            <i class="bi bi-trash-fill"></i> Delete
+                        </a>
+                        </td>   
                     </tr>
                 <?php endwhile ?>
             </tbody>
