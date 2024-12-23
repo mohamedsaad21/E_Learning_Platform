@@ -7,9 +7,9 @@ if (isset($_GET['id'])) {
     $StudentId = intval($_GET['id']);
 
     // Prepare the DELETE query to delete the course
-    $query = "DELETE FROM students_courses WHERE StudentId = $StudentId";
-    $result = mysqli_query($conn, $query);
     $CourseId = $_SESSION['CourseId'];
+    $query = "DELETE FROM students_courses WHERE StudentId = $StudentId AND CourseId = $CourseId";
+    $result = mysqli_query($conn, $query);
     // Bind the course ID to the DELETE query
 
     // Execute the query
