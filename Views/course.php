@@ -29,7 +29,7 @@ if ($result && $result->num_rows > 0) {
     die("Course not found.");
 }
 ?>
-
+<?php $_SESSION['CourseId'] = $courseId?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -108,7 +108,7 @@ if ($result && $result->num_rows > 0) {
                 <p class="course-description">
                     <?= htmlspecialchars($course['Description']) ?>
                 </p>
-                <button type="submit" class="enroll-btn">Enroll Now</button>
+                <button type="submit" class="enroll-btn" formaction="../Controllers/checkout.php">Enroll Now</button>
                 <button type="submit" class="cart-btn" formaction="../Controllers/CartController.php">
                     <i class="fas fa-shopping-cart"></i> Add to Cart
                 </button>
