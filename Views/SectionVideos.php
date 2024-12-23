@@ -82,7 +82,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                     <div class="auth-buttons d-flex">
                         <?php if (isset($_SESSION['user_id'])): ?>
                             <a href="#" class="login-btn me-2"><?php echo $_SESSION['username']; ?></a>
-                            <a href="Controllers/Logout.php" class="register-btn">Log Out</a>
+                            <a href="../Controllers/Logout.php" class="register-btn">Log Out</a>
                         <?php else: ?>
                             <a href="Views/login.php" class="login-btn me-2">Login</a>
                             <a href="Views/register.php" class="register-btn">Register</a>
