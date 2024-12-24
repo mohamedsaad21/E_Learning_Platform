@@ -4,7 +4,8 @@ if ($_SESSION['role'] != "Admin") {
      header("Location: ../../AccessDenied.php");
 }
 include "../../config/database.php";
-$query = "SELECT courses.*, Username, categories.Name FROM courses INNER JOIN users ON users.Id = courses.InstructorId INNER JOIN categories ON courses.categoryId = categories.Id";
+$query = "SELECT courses.*, Username, categories.Name FROM courses INNER JOIN users ON users.Id = courses.InstructorId 
+INNER JOIN categories ON courses.categoryId = categories.Id";
 $result = mysqli_query($conn, $query);
 ?>
 <!DOCTYPE html>
